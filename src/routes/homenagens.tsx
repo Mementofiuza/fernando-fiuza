@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { tributes, honorImages, homenagens } from "@/data/content";
-import { Quote, FileText } from "lucide-react";
+import { Quote, FileText, X } from "lucide-react";
 import { useState } from "react";
 import { DocModal } from "@/components/DocModal";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/homenagens")({
   head: () => ({
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/homenagens")({
 
 function Homenagens() {
   const [active, setActive] = useState<typeof homenagens[number] | null>(null);
+  const [activeImg, setActiveImg] = useState<number | null>(null);
 
   return (
     <PageShell
@@ -45,19 +47,18 @@ function Homenagens() {
         <div className="gold-rule-left mt-4" />
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {honorImages.map((img, i) => (
-            <a
+            <button
               key={i}
-              href={img.src}
-              target="_blank"
-              rel="noreferrer"
-              className="group block bg-card border border-border overflow-hidden hover-lift reveal"
+              type="button"
+              onClick={() => setActiveImg(i)}
+              className="group block text-left bg-card border border-border overflow-hidden hover-lift reveal"
               style={{ animationDelay: `${i * 0.04}s` }}
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={img.src} alt={img.caption} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <p className="px-4 py-3 text-sm text-primary font-serif">{img.caption}</p>
-            </a>
+            </button>
           ))}
         </div>
       </div>
@@ -85,6 +86,22 @@ function Homenagens() {
       </div>
 
       {active && <DocModal open={!!active} onOpenChange={(v) => !v && setActive(null)} title={active.title} url={active.url} />}
+
+      <Dialog open={activeImg !== null} onOpenChange={(v) => !v && setActiveImg(null)}>
+        <DialogContent className="max-w-6xl w-[95vw] p-0 bg-black/95 border-0">
+          {activeImg !== null && (
+            <div className="relative">
+              <img src={honorImages[activeImg].src} alt={honorImages[activeImg].caption} className="w-full max-h-[85vh] object-contain" />
+              <button onClick={() => setActiveImg(null)} className="absolute top-4 right-4 w-10 h-10 grid place-items-center bg-white/10 hover:bg-white/20 text-white rounded-full">
+                <X className="w-5 h-5" />
+              </button>
+              <p className="absolute bottom-0 left-0 right-0 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent text-white font-serif text-center">
+                {honorImages[activeImg].caption}
+              </p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </PageShell>
   );
 }

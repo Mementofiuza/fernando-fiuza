@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 
 export function SiteFooter() {
   return (
     <footer className="mt-32 bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-2 gap-12">
           <div>
             <p className="font-serif text-2xl leading-snug">
               "A medicina é a mais humana das ciências, e a memória, sua mais nobre forma de gratidão."
@@ -27,19 +27,6 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-serif text-lg mb-4 text-gold">Contato</h4>
-            <a
-              href="mailto:contato@fernandofiuza.com.br"
-              className="inline-flex items-center gap-2 text-sm opacity-85 hover:text-gold transition-colors"
-            >
-              <Mail className="w-4 h-4" /> contato@fernandofiuza.com.br
-            </a>
-            <p className="mt-4 text-xs opacity-60 leading-relaxed">
-              Para envio de homenagens, depoimentos, fotos ou documentos
-              relacionados ao acervo do Dr. Fiuza.
-            </p>
-          </div>
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-65">
