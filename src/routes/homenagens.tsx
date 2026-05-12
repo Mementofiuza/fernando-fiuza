@@ -85,6 +85,22 @@ function Homenagens() {
       </div>
 
       {active && <DocModal open={!!active} onOpenChange={(v) => !v && setActive(null)} title={active.title} url={active.url} />}
+
+      <Dialog open={activeImg !== null} onOpenChange={(v) => !v && setActiveImg(null)}>
+        <DialogContent className="max-w-6xl w-[95vw] p-0 bg-black/95 border-0">
+          {activeImg !== null && (
+            <div className="relative">
+              <img src={honorImages[activeImg].src} alt={honorImages[activeImg].caption} className="w-full max-h-[85vh] object-contain" />
+              <button onClick={() => setActiveImg(null)} className="absolute top-4 right-4 w-10 h-10 grid place-items-center bg-white/10 hover:bg-white/20 text-white rounded-full">
+                <X className="w-5 h-5" />
+              </button>
+              <p className="absolute bottom-0 left-0 right-0 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent text-white font-serif text-center">
+                {honorImages[activeImg].caption}
+              </p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </PageShell>
   );
 }
