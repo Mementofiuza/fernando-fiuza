@@ -5,7 +5,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-32 bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-2 gap-12">
           <div>
             <p className="font-serif text-2xl leading-snug">
               "A medicina é a mais humana das ciências, e a memória, sua mais nobre forma de gratidão."
