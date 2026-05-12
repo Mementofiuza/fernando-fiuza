@@ -19,6 +19,7 @@ export const Route = createFileRoute("/homenagens")({
 
 function Homenagens() {
   const [active, setActive] = useState<typeof homenagens[number] | null>(null);
+  const [activeImg, setActiveImg] = useState<number | null>(null);
 
   return (
     <PageShell
