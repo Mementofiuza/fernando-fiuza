@@ -9,8 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VideosRouteImport } from './routes/videos'
+import { Route as ProducaoCientificaRouteImport } from './routes/producao-cientifica'
+import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
+import { Route as HomenagensRouteImport } from './routes/homenagens'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as BiografiaRouteImport } from './routes/biografia'
+import { Route as ArtigosRouteImport } from './routes/artigos'
+import { Route as AcervoRouteImport } from './routes/acervo'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducaoCientificaRoute = ProducaoCientificaRouteImport.update({
+  id: '/producao-cientifica',
+  path: '/producao-cientifica',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LinhaDoTempoRoute = LinhaDoTempoRouteImport.update({
+  id: '/linha-do-tempo',
+  path: '/linha-do-tempo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomenagensRoute = HomenagensRouteImport.update({
+  id: '/homenagens',
+  path: '/homenagens',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BiografiaRoute = BiografiaRouteImport.update({
+  id: '/biografia',
+  path: '/biografia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtigosRoute = ArtigosRouteImport.update({
+  id: '/artigos',
+  path: '/artigos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcervoRoute = AcervoRouteImport.update({
+  id: '/acervo',
+  path: '/acervo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +73,158 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acervo': typeof AcervoRoute
+  '/artigos': typeof ArtigosRoute
+  '/biografia': typeof BiografiaRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/homenagens': typeof HomenagensRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/producao-cientifica': typeof ProducaoCientificaRoute
+  '/videos': typeof VideosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acervo': typeof AcervoRoute
+  '/artigos': typeof ArtigosRoute
+  '/biografia': typeof BiografiaRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/homenagens': typeof HomenagensRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/producao-cientifica': typeof ProducaoCientificaRoute
+  '/videos': typeof VideosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acervo': typeof AcervoRoute
+  '/artigos': typeof ArtigosRoute
+  '/biografia': typeof BiografiaRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/homenagens': typeof HomenagensRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/producao-cientifica': typeof ProducaoCientificaRoute
+  '/videos': typeof VideosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/acervo'
+    | '/artigos'
+    | '/biografia'
+    | '/contato'
+    | '/galeria'
+    | '/homenagens'
+    | '/linha-do-tempo'
+    | '/producao-cientifica'
+    | '/videos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/acervo'
+    | '/artigos'
+    | '/biografia'
+    | '/contato'
+    | '/galeria'
+    | '/homenagens'
+    | '/linha-do-tempo'
+    | '/producao-cientifica'
+    | '/videos'
+  id:
+    | '__root__'
+    | '/'
+    | '/acervo'
+    | '/artigos'
+    | '/biografia'
+    | '/contato'
+    | '/galeria'
+    | '/homenagens'
+    | '/linha-do-tempo'
+    | '/producao-cientifica'
+    | '/videos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcervoRoute: typeof AcervoRoute
+  ArtigosRoute: typeof ArtigosRoute
+  BiografiaRoute: typeof BiografiaRoute
+  ContatoRoute: typeof ContatoRoute
+  GaleriaRoute: typeof GaleriaRoute
+  HomenagensRoute: typeof HomenagensRoute
+  LinhaDoTempoRoute: typeof LinhaDoTempoRoute
+  ProducaoCientificaRoute: typeof ProducaoCientificaRoute
+  VideosRoute: typeof VideosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producao-cientifica': {
+      id: '/producao-cientifica'
+      path: '/producao-cientifica'
+      fullPath: '/producao-cientifica'
+      preLoaderRoute: typeof ProducaoCientificaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/linha-do-tempo': {
+      id: '/linha-do-tempo'
+      path: '/linha-do-tempo'
+      fullPath: '/linha-do-tempo'
+      preLoaderRoute: typeof LinhaDoTempoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homenagens': {
+      id: '/homenagens'
+      path: '/homenagens'
+      fullPath: '/homenagens'
+      preLoaderRoute: typeof HomenagensRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/biografia': {
+      id: '/biografia'
+      path: '/biografia'
+      fullPath: '/biografia'
+      preLoaderRoute: typeof BiografiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artigos': {
+      id: '/artigos'
+      path: '/artigos'
+      fullPath: '/artigos'
+      preLoaderRoute: typeof ArtigosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acervo': {
+      id: '/acervo'
+      path: '/acervo'
+      fullPath: '/acervo'
+      preLoaderRoute: typeof AcervoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +237,26 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcervoRoute: AcervoRoute,
+  ArtigosRoute: ArtigosRoute,
+  BiografiaRoute: BiografiaRoute,
+  ContatoRoute: ContatoRoute,
+  GaleriaRoute: GaleriaRoute,
+  HomenagensRoute: HomenagensRoute,
+  LinhaDoTempoRoute: LinhaDoTempoRoute,
+  ProducaoCientificaRoute: ProducaoCientificaRoute,
+  VideosRoute: VideosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
