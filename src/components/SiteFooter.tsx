@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 
 export function SiteFooter() {
   return (
