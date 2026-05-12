@@ -27,19 +27,6 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-serif text-lg mb-4 text-gold">Contato</h4>
-            <a
-              href="mailto:contato@fernandofiuza.com.br"
-              className="inline-flex items-center gap-2 text-sm opacity-85 hover:text-gold transition-colors"
-            >
-              <Mail className="w-4 h-4" /> contato@fernandofiuza.com.br
-            </a>
-            <p className="mt-4 text-xs opacity-60 leading-relaxed">
-              Para envio de homenagens, depoimentos, fotos ou documentos
-              relacionados ao acervo do Dr. Fiuza.
-            </p>
-          </div>
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-65">
