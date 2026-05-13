@@ -12,7 +12,6 @@ const NAV = [
   { to: "/homenagens", label: "Homenagens" },
   { to: "/linha-do-tempo", label: "Linha do Tempo" },
   { to: "/acervo", label: "Acervo" },
-  { to: "/contato", label: "Contato" },
 ] as const;
 
 export function SiteHeader() {
