@@ -31,7 +31,7 @@ function Galeria() {
           <button
             key={i}
             onClick={() => setActive(i)}
-            className="group block w-full mb-5 break-inside-avoid text-left reveal"
+            className="group block w-full mb-5 break-inside-avoid text-left bg-card border border-border overflow-hidden hover-lift reveal"
             style={{ animationDelay: `${Math.min(i * 0.05, 0.5)}s` }}
           >
             <div className="relative overflow-hidden bg-muted">
@@ -43,7 +43,7 @@ function Galeria() {
               />
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
             </div>
-            <p className="mt-3 text-sm font-serif text-foreground/80 group-hover:text-primary transition-colors">
+            <p className="px-4 py-3 text-sm text-primary font-serif">
               {img.caption}
             </p>
           </button>
