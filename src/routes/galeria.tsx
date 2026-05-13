@@ -31,18 +31,21 @@ function Galeria() {
           <button
             key={i}
             onClick={() => setActive(i)}
-            className="group relative block w-full mb-5 break-inside-avoid overflow-hidden bg-muted reveal"
+            className="group block w-full mb-5 break-inside-avoid text-left reveal"
             style={{ animationDelay: `${Math.min(i * 0.05, 0.5)}s` }}
           >
-            <img
-              src={img.src}
-              alt={img.caption}
-              loading="lazy"
-              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
-              <p className="text-primary-foreground text-sm font-serif">{img.caption}</p>
+            <div className="relative overflow-hidden bg-muted">
+              <img
+                src={img.src}
+                alt={img.caption}
+                loading="lazy"
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
             </div>
+            <p className="mt-3 text-sm font-serif text-foreground/80 group-hover:text-primary transition-colors">
+              {img.caption}
+            </p>
           </button>
         ))}
       </div>
