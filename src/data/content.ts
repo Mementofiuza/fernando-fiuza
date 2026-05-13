@@ -90,7 +90,7 @@ export const galleryImages = [
 export const honorImages = [
   { src: `${BASE}/Mensagens%20e%20Homenagens/OK_50%20Pizza%20Clinica%20SPPT.jpg`, caption: "Homenagem da SPPT na Pizza Clínica" },
   { src: `${BASE}/Mensagens%20e%20Homenagens/OK_exatletasdotimedebasquetedoclubepaysanduquefizeramhistorianosanos60e70.jpg`, caption: "Atletas de basquete – Paysandu Sport Club" },
-  { src: `${BASE}/Mensagens%20e%20Homenagens/OK_fernandoporvitorguedesdojornalagora.jpg`, caption: "Homenagem prestada por Vitor Guedes" },
+  { src: new URL("../assets/homenagem-vitor-guedes.jpg", import.meta.url).href, caption: "Homenagem prestada por Vitor Guedes" },
   { src: `${BASE}/Mensagens%20e%20Homenagens/OK_fotocalendariomuseudapessoa2.jpg`, caption: "Homenagem do Museu da Pessoa" },
   { src: `${BASE}/Mensagens%20e%20Homenagens/OK_lancamentolivropaixaocorinthiana.jpg`, caption: "Lançamento do livro Paixão Corinthiana" },
   { src: `${BASE}/Mensagens%20e%20Homenagens/OK_placahomenagemcongressoSBPT.jpg`, caption: "Placa de homenagem – XXXV Congresso SBPT, 2010" },
