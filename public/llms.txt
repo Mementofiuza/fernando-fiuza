@@ -1,0 +1,15 @@
+# Memorial Dr. Fernando Augusto Fiuza de Melo
+
+> Site memorial dedicado à vida, obra e legado do Dr. Fernando Augusto Fiuza de Melo (1944–2011), médico pneumologista e referência brasileira no controle da tuberculose.
+
+## Pages
+
+- [Home](/): Apresentação do memorial e trajetória do Dr. Fiuza.
+- [Biografia](/biografia): Da infância em Belém ao reconhecimento nacional na medicina.
+- [Linha do Tempo](/linha-do-tempo): Marcos cronológicos da vida e carreira.
+- [Produção Científica](/producao-cientifica): Artigos, aulas e publicações científicas.
+- [Artigos](/artigos): Acervo completo de publicações, crônicas e cartas.
+- [Homenagens](/homenagens): Depoimentos e homenagens de colegas e familiares.
+- [Galeria](/galeria): Fotografias da vida pessoal e profissional.
+- [Vídeos](/videos): Registros audiovisuais e entrevistas.
+- [Acervo](/acervo): Documentos digitais, PDFs e materiais históricos.
