@@ -10,10 +10,14 @@ export const Route = createFileRoute("/contato")({
       { name: "description", content: "Entre em contato para enviar homenagens, depoimentos, fotos ou documentos relacionados ao acervo do Dr. Fernando Fiuza." },
       { property: "og:title", content: "Contato" },
       { property: "og:description", content: "Fale com os mantenedores do memorial." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/contato" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/contato" }],
   }),
   component: Contato,
 });
+
 
 function Contato() {
   const [sent, setSent] = useState(false);
@@ -72,22 +76,23 @@ function Contato() {
             <>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Nome</label>
-                  <input required className="mt-2 w-full border-b border-border bg-transparent py-2.5 outline-none focus:border-gold transition-colors" />
+                  <label htmlFor="contato-nome" className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Nome</label>
+                  <input id="contato-nome" name="nome" required className="mt-2 w-full border-b border-border bg-transparent py-2.5 outline-none focus:border-gold transition-colors" />
                 </div>
                 <div>
-                  <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">E-mail</label>
-                  <input type="email" required className="mt-2 w-full border-b border-border bg-transparent py-2.5 outline-none focus:border-gold transition-colors" />
+                  <label htmlFor="contato-email" className="text-xs uppercase tracking-[0.2em] text-muted-foreground">E-mail</label>
+                  <input id="contato-email" name="email" type="email" required className="mt-2 w-full border-b border-border bg-transparent py-2.5 outline-none focus:border-gold transition-colors" />
                 </div>
               </div>
               <div className="mt-6">
-                <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Assunto</label>
-                <input className="mt-2 w-full border-b border-border bg-transparent py-2.5 outline-none focus:border-gold transition-colors" />
+                <label htmlFor="contato-assunto" className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Assunto</label>
+                <input id="contato-assunto" name="assunto" className="mt-2 w-full border-b border-border bg-transparent py-2.5 outline-none focus:border-gold transition-colors" />
               </div>
               <div className="mt-6">
-                <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Mensagem ou homenagem</label>
-                <textarea required rows={6} className="mt-2 w-full border border-border bg-background p-3 text-sm outline-none focus:border-gold transition-colors resize-none" />
+                <label htmlFor="contato-mensagem" className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Mensagem ou homenagem</label>
+                <textarea id="contato-mensagem" name="mensagem" required rows={6} className="mt-2 w-full border border-border bg-background p-3 text-sm outline-none focus:border-gold transition-colors resize-none" />
               </div>
+
               <button type="submit" className="mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 text-sm uppercase tracking-[0.18em] hover:bg-gold hover:text-gold-foreground transition-colors">
                 <Send className="w-4 h-4" /> Enviar mensagem
               </button>

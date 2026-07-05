@@ -12,10 +12,14 @@ export const Route = createFileRoute("/acervo")({
       { name: "description", content: "Acervo digital com PDFs, certificados, documentos históricos e materiais relacionados à obra do Dr. Fiuza." },
       { property: "og:title", content: "Acervo / Documentos" },
       { property: "og:description", content: "Memória documental." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/acervo" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/acervo" }],
   }),
   component: Acervo,
 });
+
 
 const ALL: Doc[] = [...articles, ...cronicas, ...lectures, ...homenagens];
 
@@ -38,12 +42,15 @@ function Acervo() {
     >
       <div className="grid md:grid-cols-[1fr_auto] gap-4 mb-8">
         <div className="flex items-center gap-3 border border-border bg-card px-5 py-3.5 focus-within:border-gold transition-colors">
-          <Search className="w-4 h-4 text-muted-foreground" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar no acervo…" className="flex-1 bg-transparent outline-none text-sm" />
+          <Search className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+          <label htmlFor="acervo-search" className="sr-only">Buscar no acervo</label>
+          <input id="acervo-search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar no acervo…" aria-label="Buscar no acervo" className="flex-1 bg-transparent outline-none text-sm" />
         </div>
-        <select value={cat} onChange={(e) => setCat(e.target.value)} className="border border-border bg-card px-5 py-3.5 text-sm">
+        <label htmlFor="acervo-categoria" className="sr-only">Filtrar por categoria</label>
+        <select id="acervo-categoria" aria-label="Filtrar por categoria" value={cat} onChange={(e) => setCat(e.target.value)} className="border border-border bg-card px-5 py-3.5 text-sm">
           {cats.map((c) => <option key={c}>{c}</option>)}
         </select>
+
       </div>
 
       <div className="border border-border divide-y divide-border bg-card">
