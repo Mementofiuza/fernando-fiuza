@@ -98,6 +98,7 @@ function Home() {
                 <img
                   src={s.image}
                   alt={s.title}
+                  style={{ objectPosition: s.position }}
                   className="absolute inset-0 w-full h-full object-cover ken-burns"
                 />
                 <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
