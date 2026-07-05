@@ -14,10 +14,33 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Memorial em homenagem ao legado científico, acadêmico e humano do Dr. Fernando Augusto Fiuza de Melo, médico pneumologista e referência no controle da tuberculose." },
       { property: "og:title", content: "Memorial Dr. Fernando Augusto Fiuza de Melo" },
       { property: "og:description", content: "Vida, obra e legado de uma referência da medicina brasileira." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Memorial Dr. Fernando Augusto Fiuza de Melo",
+          url: "https://fernando-fiuza.lovable.app/",
+          inLanguage: "pt-BR",
+          about: {
+            "@type": "Person",
+            name: "Fernando Augusto Fiuza de Melo",
+            birthDate: "1944",
+            deathDate: "2011-07",
+            jobTitle: "Médico pneumologista e pesquisador",
+          },
+        }),
+      },
     ],
   }),
   component: Home,
 });
+
 
 const slides = [
   {
