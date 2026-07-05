@@ -54,7 +54,7 @@ function Bio() {
       <div className="grid lg:grid-cols-[1fr_2fr] gap-14">
         <div className="lg:sticky lg:top-32 self-start reveal">
           <div className="relative">
-            <img src={portrait} alt="Dr. Fernando Fiuza" className="w-full aspect-[4/5] object-cover shadow-[var(--shadow-elegant)]" loading="lazy" />
+            <img src={portrait.url} alt="Dr. Fernando Fiuza" className="w-full aspect-[4/5] object-cover shadow-[var(--shadow-elegant)]" loading="lazy" />
             <div className="absolute inset-0 ring-1 ring-gold/40 pointer-events-none" />
           </div>
           <p className="mt-6 text-sm text-muted-foreground italic font-serif">
