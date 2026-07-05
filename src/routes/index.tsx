@@ -45,19 +45,28 @@ export const Route = createFileRoute("/")({
 
 const slides = [
   {
-    image: heroPortrait,
-    title: "Uma vida dedicada à ciência",
-    subtitle: "Médico, pesquisador e referência internacional no estudo da tuberculose.",
+    image: belemAsset.url,
+    position: "center center",
+    title: "Belém do Pará",
+    subtitle: "Cidade natal do Dr. Fiuza, onde nasceu em 1944 e formou-se em Medicina pela UFPA.",
   },
   {
-    image: heroResearch,
-    title: "Décadas de pesquisa",
-    subtitle: "Pesquisas pioneiras na epidemiologia e tratamento da tuberculose multirresistente.",
+    image: saoPauloAsset.url,
+    position: "center bottom",
+    title: "São Paulo",
+    subtitle: "Palco de mais de quatro décadas à frente do Instituto Clemente Ferreira, referência no combate à tuberculose.",
   },
   {
-    image: heroAuditorium,
-    title: "Mestre e formador",
-    subtitle: "Inspirou gerações de médicos, sanitaristas e pesquisadores em todo o Brasil.",
+    image: alterDoChaoAsset.url,
+    position: "center center",
+    title: "Alter do Chão",
+    subtitle: "Refúgio amazônico que sempre esteve presente em sua memória e em suas crônicas.",
+  },
+  {
+    image: luandaAsset.url,
+    position: "center center",
+    title: "Luanda, Angola",
+    subtitle: "Atuação internacional em cooperação científica e no enfrentamento global da tuberculose.",
   },
 ];
 
