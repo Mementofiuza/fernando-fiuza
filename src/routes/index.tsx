@@ -205,7 +205,7 @@ function Home() {
           <div className="relative reveal" style={{ animationDelay: "0.2s" }}>
             <div className="absolute -inset-4 bg-gradient-to-br from-gold/30 to-transparent blur-2xl -z-10" />
             <img
-              src={portraitSide}
+              src={portraitSide.url}
               alt="Retrato do Dr. Fernando Fiuza"
               className="w-full aspect-[4/5] object-cover shadow-[var(--shadow-elegant)] rounded-sm"
               loading="lazy"
