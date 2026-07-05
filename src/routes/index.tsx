@@ -6,7 +6,7 @@ import belemAsset from "@/assets/belem.jpg.asset.json";
 import saoPauloAsset from "@/assets/sao-paulo.jpg.asset.json";
 import alterDoChaoAsset from "@/assets/alter-do-chao.jpg.asset.json";
 import luandaAsset from "@/assets/luanda.jpg.asset.json";
-import portraitSide from "@/assets/portrait-side.jpg";
+import portraitSide from "@/assets/fernando-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
