@@ -12,10 +12,14 @@ export const Route = createFileRoute("/galeria")({
       { name: "description", content: "Galeria de fotografias da vida pessoal e profissional do Dr. Fernando Fiuza." },
       { property: "og:title", content: "Galeria de Fotos" },
       { property: "og:description", content: "Memória em imagens." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/galeria" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/galeria" }],
   }),
   component: Galeria,
 });
+
 
 function Galeria() {
   const [active, setActive] = useState<number | null>(null);

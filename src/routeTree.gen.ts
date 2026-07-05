@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VideosRouteImport } from './routes/videos'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProducaoCientificaRouteImport } from './routes/producao-cientifica'
 import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as HomenagensRouteImport } from './routes/homenagens'
@@ -23,6 +24,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const VideosRoute = VideosRouteImport.update({
   id: '/videos',
   path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProducaoCientificaRoute = ProducaoCientificaRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/homenagens': typeof HomenagensRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/producao-cientifica': typeof ProducaoCientificaRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/homenagens': typeof HomenagensRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/producao-cientifica': typeof ProducaoCientificaRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/homenagens': typeof HomenagensRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/producao-cientifica': typeof ProducaoCientificaRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/homenagens'
     | '/linha-do-tempo'
     | '/producao-cientifica'
+    | '/sitemap.xml'
     | '/videos'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/homenagens'
     | '/linha-do-tempo'
     | '/producao-cientifica'
+    | '/sitemap.xml'
     | '/videos'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/homenagens'
     | '/linha-do-tempo'
     | '/producao-cientifica'
+    | '/sitemap.xml'
     | '/videos'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   HomenagensRoute: typeof HomenagensRoute
   LinhaDoTempoRoute: typeof LinhaDoTempoRoute
   ProducaoCientificaRoute: typeof ProducaoCientificaRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VideosRoute: typeof VideosRoute
 }
 
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/videos'
       fullPath: '/videos'
       preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/producao-cientifica': {
@@ -245,18 +265,9 @@ const rootRouteChildren: RootRouteChildren = {
   HomenagensRoute: HomenagensRoute,
   LinhaDoTempoRoute: LinhaDoTempoRoute,
   ProducaoCientificaRoute: ProducaoCientificaRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   VideosRoute: VideosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

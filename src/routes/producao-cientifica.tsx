@@ -12,10 +12,28 @@ export const Route = createFileRoute("/producao-cientifica")({
       { name: "description", content: "Pesquisas, artigos, palestras e publicações médicas do Dr. Fernando Augusto Fiuza de Melo." },
       { property: "og:title", content: "Produção Científica — Dr. Fernando Fiuza" },
       { property: "og:description", content: "Décadas de pesquisa em pneumologia e tuberculose." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/producao-cientifica" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/producao-cientifica" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Produção Científica — Dr. Fernando Fiuza",
+          about: {
+            "@type": "Person",
+            name: "Fernando Augusto Fiuza de Melo",
+          },
+        }),
+      },
     ],
   }),
   component: Producao,
 });
+
 
 const TABS = ["Todos", "Artigos", "Aulas", "Crônicas"] as const;
 
@@ -66,9 +84,9 @@ function Producao() {
               </span>
               <FileText className="w-4 h-4 text-muted-foreground group-hover:text-gold transition-colors" />
             </div>
-            <h3 className="mt-4 font-serif text-lg text-primary leading-snug flex-1">
+            <h2 className="mt-4 font-serif text-lg text-primary leading-snug flex-1">
               {d.title}
-            </h3>
+            </h2>
             {d.year && <p className="mt-2 text-xs text-muted-foreground">{d.year}</p>}
             <button
               onClick={() => setActive(d)}

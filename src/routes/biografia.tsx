@@ -10,10 +10,30 @@ export const Route = createFileRoute("/biografia")({
       { name: "description", content: "Biografia do Dr. Fernando Augusto Fiuza de Melo: infância em Belém, formação na UFPA, carreira médica, pesquisas, reconhecimento e legado." },
       { property: "og:title", content: "Biografia — Dr. Fernando Fiuza" },
       { property: "og:description", content: "Da infância em Belém ao reconhecimento internacional na medicina." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/biografia" },
+      { property: "og:type", content: "profile" },
+    ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/biografia" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Fernando Augusto Fiuza de Melo",
+          birthDate: "1944",
+          deathDate: "2011-07",
+          birthPlace: "Belém, Pará, Brasil",
+          jobTitle: "Médico pneumologista e pesquisador",
+          alumniOf: "Universidade Federal do Pará",
+          description: "Médico brasileiro referência no controle da tuberculose.",
+        }),
+      },
     ],
   }),
   component: Bio,
 });
+
 
 const blocks = [
   { icon: Baby, period: "1944", title: "Infância em Belém", text: "Nascido em Belém do Pará, cresceu cercado pela diversidade humana e cultural da Amazônia, formação que marcaria sua sensibilidade médica e seu compromisso social." },
@@ -51,7 +71,7 @@ function Bio() {
                   <b.icon className="w-4 h-4" />
                 </div>
                 <span className="text-xs uppercase tracking-[0.25em] text-gold font-medium">{b.period}</span>
-                <h3 className="mt-2 font-serif text-2xl md:text-3xl text-primary">{b.title}</h3>
+                <h2 className="mt-2 font-serif text-2xl md:text-3xl text-primary">{b.title}</h2>
                 <p className="mt-3 text-muted-foreground leading-relaxed">{b.text}</p>
               </div>
             ))}

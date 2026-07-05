@@ -11,10 +11,14 @@ export const Route = createFileRoute("/videos")({
       { name: "description", content: "Entrevistas, palestras e vídeos institucionais com o Dr. Fernando Fiuza." },
       { property: "og:title", content: "Vídeos e Entrevistas" },
       { property: "og:description", content: "Acervo audiovisual." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/videos" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/videos" }],
   }),
   component: Videos,
 });
+
 
 const placeholders = [
   { title: "Depoimento ao Museu da Pessoa", category: "Entrevista", desc: "Relato sobre vida, formação e trajetória profissional gravado para o Museu da Pessoa." },
