@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowRight, BookOpen, Microscope, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.jpg";
-import heroResearch from "@/assets/hero-research.jpg";
-import heroAuditorium from "@/assets/hero-auditorium.jpg";
+import belemAsset from "@/assets/belem.jpg.asset.json";
+import saoPauloAsset from "@/assets/sao-paulo.jpg.asset.json";
+import alterDoChaoAsset from "@/assets/alter-do-chao.jpg.asset.json";
+import luandaAsset from "@/assets/luanda.jpg.asset.json";
 import portraitSide from "@/assets/portrait-side.jpg";
 
 export const Route = createFileRoute("/")({
