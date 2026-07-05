@@ -90,7 +90,7 @@ function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-[92vh] min-h-[620px] overflow-hidden">
+      <section className="relative h-[69vh] min-h-[465px] overflow-hidden">
         <div className="absolute inset-0" ref={emblaRef}>
           <div className="flex h-full">
             {slides.map((s, i) => (
