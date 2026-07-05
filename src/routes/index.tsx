@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowRight, BookOpen, Microscope, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.jpg";
-import heroResearch from "@/assets/hero-research.jpg";
-import heroAuditorium from "@/assets/hero-auditorium.jpg";
+import belemAsset from "@/assets/belem.jpg.asset.json";
+import saoPauloAsset from "@/assets/sao-paulo.jpg.asset.json";
+import alterDoChaoAsset from "@/assets/alter-do-chao.jpg.asset.json";
+import luandaAsset from "@/assets/luanda.jpg.asset.json";
 import portraitSide from "@/assets/portrait-side.jpg";
 
 export const Route = createFileRoute("/")({
@@ -44,19 +45,28 @@ export const Route = createFileRoute("/")({
 
 const slides = [
   {
-    image: heroPortrait,
-    title: "Uma vida dedicada à ciência",
-    subtitle: "Médico, pesquisador e referência internacional no estudo da tuberculose.",
+    image: belemAsset.url,
+    position: "center center",
+    title: "Belém do Pará",
+    subtitle: "Cidade natal do Dr. Fiuza, onde nasceu em 1944 e formou-se em Medicina pela UFPA.",
   },
   {
-    image: heroResearch,
-    title: "Décadas de pesquisa",
-    subtitle: "Pesquisas pioneiras na epidemiologia e tratamento da tuberculose multirresistente.",
+    image: saoPauloAsset.url,
+    position: "center bottom",
+    title: "São Paulo",
+    subtitle: "Palco de mais de quatro décadas à frente do Instituto Clemente Ferreira, referência no combate à tuberculose.",
   },
   {
-    image: heroAuditorium,
-    title: "Mestre e formador",
-    subtitle: "Inspirou gerações de médicos, sanitaristas e pesquisadores em todo o Brasil.",
+    image: alterDoChaoAsset.url,
+    position: "center center",
+    title: "Alter do Chão",
+    subtitle: "Refúgio amazônico que sempre esteve presente em sua memória e em suas crônicas.",
+  },
+  {
+    image: luandaAsset.url,
+    position: "center center",
+    title: "Luanda, Angola",
+    subtitle: "Atuação internacional em cooperação científica e no enfrentamento global da tuberculose.",
   },
 ];
 
@@ -88,6 +98,7 @@ function Home() {
                 <img
                   src={s.image}
                   alt={s.title}
+                  style={{ objectPosition: s.position }}
                   className="absolute inset-0 w-full h-full object-cover ken-burns"
                 />
                 <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
