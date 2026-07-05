@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
-import portrait from "@/assets/portrait-side.jpg";
+import portrait from "@/assets/fernando-portrait.jpg.asset.json";
 import { Baby, GraduationCap, Stethoscope, Microscope, Award, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/biografia")({
