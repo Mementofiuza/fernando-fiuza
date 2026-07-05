@@ -1,33 +1,26 @@
-## Objetivo
-Adicionar as 4 fotos enviadas (Alter do Chão, Belém, São Paulo, Luanda) ao carrossel do hero da página inicial, sem que a diferença de proporção entre elas (algumas panorâmicas muito largas, outras normais) cause aquele efeito feio de "uma imagem grande e outra pequena".
+## Alterações de texto — Home e Rodapé
 
-## Diagnóstico
-As imagens têm proporções muito diferentes:
-- Alter do Chão → paisagem normal (~3:2)
-- Belém → panorâmica larga (~3:1)
-- São Paulo → super panorâmica (~4:1)
-- Luanda → paisagem normal (~4:3)
+### 1) Página inicial (`src/routes/index.tsx`)
+Na seção "INTRODUÇÃO", substituir o bloco de texto atual (título + dois parágrafos "Nascido em Belém..." / "Pesquisador, professor...") por:
 
-Hoje o hero usa `object-cover` num container de altura fixa (`h-[92vh]`). Isso já força todas ao mesmo tamanho visual — o "problema" que aparece é que as panorâmicas ficam muito cortadas (perde-se o topo/base) e as normais ficam com zoom exagerado.
+> Prezados,
+>
+> Este é o Site do Dr. Fernando Augusto Fiuza de Melo († 10.07.2011), desenvolvido com muito amor, dedicação e admiração pelo nosso saudoso Dotôzinho.
+>
+> Aproveitem-no e usem-no livremente!
+>
+> **Família Fiuza de Melo**
 
-## Solução visual
-Padronizar todas as 4 no mesmo enquadramento do hero, mas com tratamento para não parecerem cortadas nem desproporcionais:
+Manter o kicker "Uma trajetória, um legado", a régua dourada, a foto lateral, o card "40+ anos" e o botão "Ler biografia completa".
 
-1. **Upload via Lovable Assets** — subir as 4 imagens para o CDN (não pesa o repo) e substituir os slides atuais (`heroPortrait`, `heroResearch`, `heroAuditorium`) pelas novas.
-2. **Container uniforme** — manter `h-[92vh]` + `object-cover` para que todas ocupem exatamente o mesmo espaço na tela.
-3. **`object-position` por imagem** — definir o ponto focal ideal de cada uma para que o corte fique bonito:
-   - Alter do Chão → `center`
-   - Belém → `center` (mostra a orla)
-   - São Paulo → `center bottom` (mantém skyline visível)
-   - Luanda → `center` (baobá centralizado)
-4. **Overlay/gradiente mantido** — o `gradient-hero` atual sobre a imagem já suaviza qualquer diferença de luz/contraste entre elas e uniformiza a leitura do texto por cima.
-5. **Efeito Ken Burns mantido** — o zoom lento existente disfarça pequenas diferenças de enquadramento.
-6. **Legendas coerentes** — atualizar `title`/`subtitle` de cada slide para refletir os lugares (Alter do Chão, Belém, São Paulo, Luanda) conectando-os à trajetória do Dr. Fiuza.
+### 2) Rodapé (`src/components/SiteFooter.tsx`)
+Adicionar, acima da barra inferior de copyright, dois blocos de texto:
 
-## Arquivos afetados
-- `src/assets/` → 4 novos `.asset.json` (via `lovable-assets create`)
-- `src/routes/index.tsx` → trocar imports dos slides, adicionar campo `position` no array `slides` e aplicar `style={{ objectPosition: s.position }}` no `<img>`
+- **Créditos:** "Criado pelo sobrinho Marcelo Rocha de Sá (Jambu Tecnologia — Belém, PA) e Anisio Fernandes Bezerra da Silva; e por Margarida."
+- **Aviso de uso:** "Neste site, estão disponibilizados, em acesso aberto, Artigos, Capítulos de livros, Crônicas e Cartas, Aulas e Palestras. Agradecemos a citação da autoria de Fernando Augusto Fiuza de Melo."
 
-## Perguntas rápidas
-1. Você quer **substituir** os 3 slides atuais pelas 4 novas fotos, ou **adicionar** as 4 mantendo as antigas (ficariam 7 no total)?
-2. Os textos (`title` + `subtitle`) de cada slide devo escrever ligando cada cidade à trajetória do Dr. Fiuza (Belém = nascimento, São Paulo = Instituto Clemente Ferreira, etc.), ou você prefere me passar os textos?
+Na barra inferior, trocar o `©` por **Copyleft 🄯** (símbolo de copyright livre, U+1F12F), mantendo o ano e o nome do memorial.
+
+### Observações
+- Só mudanças de conteúdo/apresentação; sem alterações de rotas, dados ou lógica.
+- Estilos existentes (tipografia serif, régua dourada, opacidades) reaproveitados para manter a identidade visual.
