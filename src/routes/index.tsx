@@ -181,15 +181,18 @@ function Home() {
             </h2>
             <div className="gold-rule-left mt-6" />
             <p className="mt-7 text-lg text-muted-foreground leading-relaxed">
-              Nascido em Belém do Pará em 1944, formado em Medicina pela UFPA em 1968,
-              o Dr. Fernando Augusto Fiuza de Melo dedicou mais de quatro décadas
-              ao estudo, ao ensino e ao tratamento da tuberculose, tornando-se uma
-              das maiores referências brasileiras no enfrentamento da doença.
+              Prezados,
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Pesquisador, professor, dirigente do Instituto Clemente Ferreira e
-              autor de dezenas de artigos científicos, sua atuação atravessou
-              gerações e continua inspirando a saúde pública brasileira.
+              Este é o Site do Dr. Fernando Augusto Fiuza de Melo († 10.07.2011),
+              desenvolvido com muito amor, dedicação e admiração pelo nosso
+              saudoso Dotôzinho.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Aproveitem-no e usem-no livremente!
+            </p>
+            <p className="mt-4 font-serif text-lg text-primary">
+              Família Fiuza de Melo
             </p>
             <Link
               to="/biografia"
@@ -197,6 +200,7 @@ function Home() {
             >
               Ler biografia completa <ArrowRight className="w-4 h-4" />
             </Link>
+
           </div>
           <div className="relative reveal" style={{ animationDelay: "0.2s" }}>
             <div className="absolute -inset-4 bg-gradient-to-br from-gold/30 to-transparent blur-2xl -z-10" />

@@ -29,12 +29,27 @@ export function SiteFooter() {
 
         </div>
 
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-65">
-          <span>© {new Date().getFullYear()} Memorial Dr. Fernando Augusto Fiuza de Melo</span>
-          <span className="inline-flex items-center gap-1.5">
-            Feito com <Heart className="w-3 h-3 text-gold" /> em memória de uma vida dedicada à ciência.
-          </span>
+        <div className="mt-14 pt-8 border-t border-white/10 space-y-6 text-xs opacity-75">
+          <p className="leading-relaxed max-w-4xl">
+            Neste site, estão disponibilizados, em acesso aberto, Artigos,
+            Capítulos de livros, Crônicas e Cartas, Aulas e Palestras.
+            Agradecemos a citação da autoria de Fernando Augusto Fiuza de Melo.
+          </p>
+          <p className="leading-relaxed max-w-4xl">
+            Criado pelo sobrinho Marcelo Rocha de Sá (Jambu Tecnologia — Belém, PA)
+            e Anisio Fernandes Bezerra da Silva; e por Margarida.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 opacity-90">
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-label="Copyleft" className="text-base leading-none">🄯</span>
+              {new Date().getFullYear()} Memorial Dr. Fernando Augusto Fiuza de Melo
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              Feito com <Heart className="w-3 h-3 text-gold" /> em memória de uma vida dedicada à ciência.
+            </span>
+          </div>
         </div>
+
       </div>
     </footer>
   );
