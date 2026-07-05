@@ -13,10 +13,14 @@ export const Route = createFileRoute("/homenagens")({
       { name: "description", content: "Homenagens, depoimentos e mensagens dedicadas ao Dr. Fernando Fiuza por instituições, colegas e familiares." },
       { property: "og:title", content: "Homenagens e Depoimentos" },
       { property: "og:description", content: "Mural de gratidão e memória." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/homenagens" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/homenagens" }],
   }),
   component: Homenagens,
 });
+
 
 function Homenagens() {
   const [active, setActive] = useState<typeof homenagens[number] | null>(null);

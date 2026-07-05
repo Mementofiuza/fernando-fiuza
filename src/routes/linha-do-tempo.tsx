@@ -9,10 +9,14 @@ export const Route = createFileRoute("/linha-do-tempo")({
       { name: "description", content: "Marcos e conquistas da trajetória do Dr. Fernando Augusto Fiuza de Melo em ordem cronológica." },
       { property: "og:title", content: "Linha do Tempo" },
       { property: "og:description", content: "Marcos cronológicos de uma vida dedicada à medicina." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/linha-do-tempo" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/linha-do-tempo" }],
   }),
   component: Tempo,
 });
+
 
 function Tempo() {
   return (
