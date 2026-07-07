@@ -5,13 +5,12 @@ import { Menu, Search, X } from "lucide-react";
 const NAV = [
   { to: "/", label: "Início" },
   { to: "/biografia", label: "Biografia" },
-  { to: "/producao-cientifica", label: "Produção" },
-  { to: "/artigos", label: "Artigos" },
-  { to: "/galeria", label: "Galeria" },
-  { to: "/videos", label: "Vídeos" },
-  { to: "/homenagens", label: "Homenagens" },
   { to: "/linha-do-tempo", label: "Linha do Tempo" },
-  { to: "/acervo", label: "Acervo" },
+  { to: "/artigos", label: "Artigos e Capítulos de livros" },
+  { to: "/aulas-e-palestras", label: "Aulas e Palestras" },
+  { to: "/cronicas-e-cartas", label: "Crônicas e Cartas" },
+  { to: "/galeria", label: "Galeria e Imagens" },
+  { to: "/homenagens", label: "Mensagens & Homenagens" },
 ] as const;
 
 export function SiteHeader() {
