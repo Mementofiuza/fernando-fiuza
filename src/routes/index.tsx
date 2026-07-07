@@ -233,9 +233,9 @@ function Home() {
 
           <div className="mt-16 grid md:grid-cols-3 gap-8">
             {[
-              { icon: Microscope, title: "Pesquisa", text: "Estudos pioneiros sobre tuberculose multirresistente, diagnóstico e novas terapias.", to: "/producao-cientifica" },
-              { icon: BookOpen, title: "Ensino", text: "Décadas formando médicos, sanitaristas e pesquisadores em programas nacionais.", to: "/artigos" },
-              { icon: Quote, title: "Humanidade", text: "Cartas, crônicas e depoimentos que revelam o homem por trás do cientista.", to: "/homenagens" },
+              { icon: Microscope, title: "Pesquisa", text: "Estudos pioneiros sobre tuberculose multirresistente, diagnóstico e novas terapias.", to: "/artigos" },
+              { icon: BookOpen, title: "Ensino", text: "Décadas formando médicos, sanitaristas e pesquisadores em programas nacionais.", to: "/aulas-e-palestras" },
+              { icon: Quote, title: "Humanidade", text: "Cartas, crônicas e depoimentos que revelam o homem por trás do cientista.", to: "/cronicas-e-cartas" },
             ].map((p, i) => (
               <Link
                 to={p.to}
