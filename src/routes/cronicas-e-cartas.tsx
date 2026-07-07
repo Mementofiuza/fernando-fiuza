@@ -1,0 +1,131 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageShell } from "@/components/PageShell";
+import { useMemo, useState } from "react";
+import { cronicas, type Doc } from "@/data/content";
+import { DocModal } from "@/components/DocModal";
+import { Search, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+
+export const Route = createFileRoute("/cronicas-e-cartas")({
+  head: () => ({
+    meta: [
+      { title: "Crônicas e Cartas — Dr. Fernando Fiuza" },
+      { name: "description", content: "Crônicas, cartas e textos pessoais escritos pelo Dr. Fernando Fiuza." },
+      { property: "og:title", content: "Crônicas e Cartas" },
+      { property: "og:description", content: "Textos literários e correspondências." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/cronicas-e-cartas" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/cronicas-e-cartas" }],
+  }),
+  component: CronicasCartas,
+});
+
+const PER_PAGE = 9;
+
+function CronicasCartas() {
+  const [q, setQ] = useState("");
+  const [cat, setCat] = useState("Todas");
+  const [page, setPage] = useState(1);
+  const [active, setActive] = useState<Doc | null>(null);
+
+  const cats = useMemo(() => ["Todas", ...Array.from(new Set(cronicas.map((a) => a.category)))], []);
+
+  const filtered = useMemo(() => {
+    return cronicas.filter(
+      (a) =>
+        (cat === "Todas" || a.category === cat) &&
+        a.title.toLowerCase().includes(q.toLowerCase())
+    );
+  }, [q, cat]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const view = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  return (
+    <PageShell
+      eyebrow="Crônicas & Cartas"
+      title="Textos literários e correspondências."
+      intro="A escrita mais pessoal do Dr. Fiuza — crônicas, memórias e cartas que revelam o humanista por trás do cientista."
+    >
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="flex-1 flex items-center gap-3 border border-border bg-card px-5 py-3.5 focus-within:border-gold transition-colors">
+          <Search className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+          <label htmlFor="cronicas-search" className="sr-only">Buscar crônicas e cartas</label>
+          <input
+            id="cronicas-search"
+            value={q}
+            onChange={(e) => { setQ(e.target.value); setPage(1); }}
+            placeholder="Buscar por título…"
+            aria-label="Buscar crônicas e cartas"
+            className="flex-1 bg-transparent outline-none text-sm"
+          />
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {cats.map((c) => (
+            <button
+              key={c}
+              onClick={() => { setCat(c); setPage(1); }}
+              className={`px-4 py-2 text-xs uppercase tracking-[0.2em] border transition ${
+                cat === c ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:border-gold"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <p className="text-sm text-muted-foreground mb-6">
+        {filtered.length} {filtered.length === 1 ? "texto encontrado" : "textos encontrados"}.
+      </p>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {view.map((d, i) => (
+          <article
+            key={d.url}
+            className="group bg-card border border-border p-6 hover-lift flex flex-col reveal"
+            style={{ animationDelay: `${i * 0.04}s` }}
+          >
+            <span className="text-[10px] uppercase tracking-[0.25em] text-gold font-medium">{d.category}</span>
+            <h2 className="mt-3 font-serif text-base md:text-lg text-primary leading-snug flex-1">{d.title}</h2>
+            <div className="mt-6 flex items-center gap-3 text-xs">
+              <button onClick={() => setActive(d)} className="inline-flex items-center gap-1.5 px-3 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors uppercase tracking-wider">
+                <Eye className="w-3 h-3" /> Ver
+              </button>
+              <a href={d.url} download className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-gold transition-colors uppercase tracking-wider">
+                <Download className="w-3 h-3" /> Baixar
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="mt-12 flex items-center justify-center gap-2">
+          <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} aria-label="Anterior" className="p-2 border border-border disabled:opacity-30 hover:border-gold">
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              aria-label={`Página ${i + 1}`}
+              aria-current={page === i + 1 ? "page" : undefined}
+              className={`w-10 h-10 text-sm border transition ${
+                page === i + 1 ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-gold"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages} aria-label="Próximo" className="p-2 border border-border disabled:opacity-30 hover:border-gold">
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
+      {active && <DocModal open={!!active} onOpenChange={(v) => !v && setActive(null)} title={active.title} url={active.url} />}
+    </PageShell>
+  );
+}
