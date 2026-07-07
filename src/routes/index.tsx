@@ -128,7 +128,7 @@ function Home() {
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
-                  to="/producao-cientifica"
+                  to="/artigos"
                   className="inline-flex items-center gap-2 border border-white/40 backdrop-blur-sm text-white px-7 py-3.5 text-sm uppercase tracking-[0.18em] hover:bg-white/10 transition-colors"
                 >
                   Produção científica
