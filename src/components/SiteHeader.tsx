@@ -91,7 +91,7 @@ export function SiteHeader() {
       )}
 
       {open && (
-        <div className="xl:hidden border-t border-border bg-background/98 backdrop-blur-md fade-up">
+        <div className="2xl:hidden border-t border-border bg-background/98 backdrop-blur-md fade-up">
           <nav className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-2 gap-x-6 gap-y-3">
             {NAV.map((item) => (
               <Link
