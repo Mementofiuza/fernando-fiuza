@@ -1,39 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { useMemo, useState } from "react";
-import { articles, type Doc } from "@/data/content";
+import { cronicas, type Doc } from "@/data/content";
 import { DocModal } from "@/components/DocModal";
 import { Search, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 
-export const Route = createFileRoute("/artigos")({
+export const Route = createFileRoute("/cronicas-e-cartas")({
   head: () => ({
     meta: [
-      { title: "Artigos e Capítulos de livros — Dr. Fernando Fiuza" },
-      { name: "description", content: "Artigos científicos e capítulos de livros publicados pelo Dr. Fernando Fiuza." },
-      { property: "og:title", content: "Artigos e Capítulos de livros" },
-      { property: "og:description", content: "Produção científica em pneumologia e tuberculose." },
-      { property: "og:url", content: "https://fernando-fiuza.lovable.app/artigos" },
+      { title: "Crônicas e Cartas — Dr. Fernando Fiuza" },
+      { name: "description", content: "Crônicas, cartas e textos pessoais escritos pelo Dr. Fernando Fiuza." },
+      { property: "og:title", content: "Crônicas e Cartas" },
+      { property: "og:description", content: "Textos literários e correspondências." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/cronicas-e-cartas" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/artigos" }],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/cronicas-e-cartas" }],
   }),
-  component: Artigos,
+  component: CronicasCartas,
 });
 
-
 const PER_PAGE = 9;
-const ALL: Doc[] = [...articles];
 
-function Artigos() {
+function CronicasCartas() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("Todas");
   const [page, setPage] = useState(1);
   const [active, setActive] = useState<Doc | null>(null);
 
-  const cats = useMemo(() => ["Todas", ...Array.from(new Set(ALL.map((a) => a.category)))], []);
+  const cats = useMemo(() => ["Todas", ...Array.from(new Set(cronicas.map((a) => a.category)))], []);
 
   const filtered = useMemo(() => {
-    return ALL.filter(
+    return cronicas.filter(
       (a) =>
         (cat === "Todas" || a.category === cat) &&
         a.title.toLowerCase().includes(q.toLowerCase())
@@ -45,20 +43,20 @@ function Artigos() {
 
   return (
     <PageShell
-      eyebrow="Artigos & Capítulos de livros"
-      title="Produção científica publicada."
-      intro="Artigos científicos e capítulos de livros do Dr. Fiuza em pneumologia, tuberculose e saúde pública."
+      eyebrow="Crônicas & Cartas"
+      title="Textos literários e correspondências."
+      intro="A escrita mais pessoal do Dr. Fiuza — crônicas, memórias e cartas que revelam o humanista por trás do cientista."
     >
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="flex-1 flex items-center gap-3 border border-border bg-card px-5 py-3.5 focus-within:border-gold transition-colors">
           <Search className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
-          <label htmlFor="artigos-search" className="sr-only">Buscar publicações por título</label>
+          <label htmlFor="cronicas-search" className="sr-only">Buscar crônicas e cartas</label>
           <input
-            id="artigos-search"
+            id="cronicas-search"
             value={q}
             onChange={(e) => { setQ(e.target.value); setPage(1); }}
             placeholder="Buscar por título…"
-            aria-label="Buscar publicações por título"
+            aria-label="Buscar crônicas e cartas"
             className="flex-1 bg-transparent outline-none text-sm"
           />
         </div>
@@ -79,7 +77,7 @@ function Artigos() {
       </div>
 
       <p className="text-sm text-muted-foreground mb-6">
-        {filtered.length} {filtered.length === 1 ? "publicação encontrada" : "publicações encontradas"}.
+        {filtered.length} {filtered.length === 1 ? "texto encontrado" : "textos encontrados"}.
       </p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -124,7 +122,6 @@ function Artigos() {
           <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages} aria-label="Próximo" className="p-2 border border-border disabled:opacity-30 hover:border-gold">
             <ChevronRight className="w-4 h-4" />
           </button>
-
         </div>
       )}
 

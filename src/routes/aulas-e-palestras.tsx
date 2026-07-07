@@ -1,85 +1,63 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { useMemo, useState } from "react";
-import { articles, type Doc } from "@/data/content";
+import { lectures, type Doc } from "@/data/content";
 import { DocModal } from "@/components/DocModal";
 import { Search, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 
-export const Route = createFileRoute("/artigos")({
+export const Route = createFileRoute("/aulas-e-palestras")({
   head: () => ({
     meta: [
-      { title: "Artigos e Capítulos de livros — Dr. Fernando Fiuza" },
-      { name: "description", content: "Artigos científicos e capítulos de livros publicados pelo Dr. Fernando Fiuza." },
-      { property: "og:title", content: "Artigos e Capítulos de livros" },
-      { property: "og:description", content: "Produção científica em pneumologia e tuberculose." },
-      { property: "og:url", content: "https://fernando-fiuza.lovable.app/artigos" },
+      { title: "Aulas e Palestras — Dr. Fernando Fiuza" },
+      { name: "description", content: "Aulas, palestras e materiais didáticos elaborados pelo Dr. Fernando Fiuza." },
+      { property: "og:title", content: "Aulas e Palestras" },
+      { property: "og:description", content: "Materiais didáticos e apresentações." },
+      { property: "og:url", content: "https://fernando-fiuza.lovable.app/aulas-e-palestras" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/artigos" }],
+    links: [{ rel: "canonical", href: "https://fernando-fiuza.lovable.app/aulas-e-palestras" }],
   }),
-  component: Artigos,
+  component: AulasPalestras,
 });
 
-
 const PER_PAGE = 9;
-const ALL: Doc[] = [...articles];
 
-function Artigos() {
+function AulasPalestras() {
   const [q, setQ] = useState("");
-  const [cat, setCat] = useState("Todas");
   const [page, setPage] = useState(1);
   const [active, setActive] = useState<Doc | null>(null);
 
-  const cats = useMemo(() => ["Todas", ...Array.from(new Set(ALL.map((a) => a.category)))], []);
-
-  const filtered = useMemo(() => {
-    return ALL.filter(
-      (a) =>
-        (cat === "Todas" || a.category === cat) &&
-        a.title.toLowerCase().includes(q.toLowerCase())
-    );
-  }, [q, cat]);
+  const filtered = useMemo(
+    () => lectures.filter((a) => a.title.toLowerCase().includes(q.toLowerCase())),
+    [q]
+  );
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const view = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   return (
     <PageShell
-      eyebrow="Artigos & Capítulos de livros"
-      title="Produção científica publicada."
-      intro="Artigos científicos e capítulos de livros do Dr. Fiuza em pneumologia, tuberculose e saúde pública."
+      eyebrow="Aulas & Palestras"
+      title="Materiais didáticos e apresentações."
+      intro="Aulas, palestras e apresentações do Dr. Fiuza sobre tuberculose, pneumologia e saúde pública."
     >
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="flex-1 flex items-center gap-3 border border-border bg-card px-5 py-3.5 focus-within:border-gold transition-colors">
           <Search className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
-          <label htmlFor="artigos-search" className="sr-only">Buscar publicações por título</label>
+          <label htmlFor="aulas-search" className="sr-only">Buscar aulas e palestras</label>
           <input
-            id="artigos-search"
+            id="aulas-search"
             value={q}
             onChange={(e) => { setQ(e.target.value); setPage(1); }}
             placeholder="Buscar por título…"
-            aria-label="Buscar publicações por título"
+            aria-label="Buscar aulas e palestras"
             className="flex-1 bg-transparent outline-none text-sm"
           />
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {cats.map((c) => (
-            <button
-              key={c}
-              onClick={() => { setCat(c); setPage(1); }}
-              className={`px-4 py-2 text-xs uppercase tracking-[0.2em] border transition ${
-                cat === c ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:border-gold"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
         </div>
       </div>
 
       <p className="text-sm text-muted-foreground mb-6">
-        {filtered.length} {filtered.length === 1 ? "publicação encontrada" : "publicações encontradas"}.
+        {filtered.length} {filtered.length === 1 ? "material encontrado" : "materiais encontrados"}.
       </p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -124,7 +102,6 @@ function Artigos() {
           <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages} aria-label="Próximo" className="p-2 border border-border disabled:opacity-30 hover:border-gold">
             <ChevronRight className="w-4 h-4" />
           </button>
-
         </div>
       )}
 

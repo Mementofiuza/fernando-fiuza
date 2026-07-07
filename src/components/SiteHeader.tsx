@@ -5,13 +5,12 @@ import { Menu, Search, X } from "lucide-react";
 const NAV = [
   { to: "/", label: "Início" },
   { to: "/biografia", label: "Biografia" },
-  { to: "/producao-cientifica", label: "Produção" },
-  { to: "/artigos", label: "Artigos" },
-  { to: "/galeria", label: "Galeria" },
-  { to: "/videos", label: "Vídeos" },
-  { to: "/homenagens", label: "Homenagens" },
   { to: "/linha-do-tempo", label: "Linha do Tempo" },
-  { to: "/acervo", label: "Acervo" },
+  { to: "/artigos", label: "Artigos e Capítulos de livros" },
+  { to: "/aulas-e-palestras", label: "Aulas e Palestras" },
+  { to: "/cronicas-e-cartas", label: "Crônicas e Cartas" },
+  { to: "/galeria", label: "Galeria e Imagens" },
+  { to: "/homenagens", label: "Mensagens & Homenagens" },
 ] as const;
 
 export function SiteHeader() {
@@ -36,22 +35,22 @@ export function SiteHeader() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between gap-6">
-        <Link to="/" className="group flex flex-col leading-tight">
-          <span className="font-serif text-lg md:text-xl text-primary tracking-tight">
-            Dr. Fernando Augusto Fiuza de Melo
+        <Link to="/" className="group flex flex-col leading-tight shrink-0">
+          <span className="font-serif text-base md:text-lg text-primary tracking-tight">
+            Dr. Fernando A. Fiuza de Melo
           </span>
-          <span className="text-[11px] md:text-xs text-muted-foreground tracking-[0.2em] uppercase">
-            Médico · Pesquisador · Referência Científica
+          <span className="text-[10px] md:text-[11px] text-muted-foreground tracking-[0.2em] uppercase">
+            Médico · Pesquisador
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-7 text-sm">
+        <nav className="hidden 2xl:flex items-center gap-5 text-[11px] uppercase tracking-[0.14em]">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="story-link text-foreground/80 hover:text-primary transition-colors"
-              activeProps={{ className: "story-link text-primary font-medium" }}
+              className="story-link text-foreground/75 hover:text-primary transition-colors whitespace-nowrap"
+              activeProps={{ className: "story-link text-primary font-medium whitespace-nowrap" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
@@ -70,7 +69,7 @@ export function SiteHeader() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
-            className="xl:hidden p-2 rounded-full hover:bg-accent transition-colors"
+            className="2xl:hidden p-2 rounded-full hover:bg-accent transition-colors"
           >
             {open ? <X className="w-5 h-5 text-primary" /> : <Menu className="w-5 h-5 text-primary" />}
           </button>
@@ -92,7 +91,7 @@ export function SiteHeader() {
       )}
 
       {open && (
-        <div className="xl:hidden border-t border-border bg-background/98 backdrop-blur-md fade-up">
+        <div className="2xl:hidden border-t border-border bg-background/98 backdrop-blur-md fade-up">
           <nav className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-2 gap-x-6 gap-y-3">
             {NAV.map((item) => (
               <Link
