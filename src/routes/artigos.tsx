@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { useMemo, useState } from "react";
-import { articles, cronicas, lectures, type Doc } from "@/data/content";
+import { articles, type Doc } from "@/data/content";
 import { DocModal } from "@/components/DocModal";
 import { Search, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/artigos")({
   head: () => ({
     meta: [
-      { title: "Artigos e Publicações — Dr. Fernando Fiuza" },
-      { name: "description", content: "Listagem completa de artigos, capítulos de livros, crônicas e cartas escritos pelo Dr. Fernando Fiuza." },
-      { property: "og:title", content: "Artigos e Publicações" },
-      { property: "og:description", content: "Acervo completo de publicações." },
+      { title: "Artigos e Capítulos de livros — Dr. Fernando Fiuza" },
+      { name: "description", content: "Artigos científicos e capítulos de livros publicados pelo Dr. Fernando Fiuza." },
+      { property: "og:title", content: "Artigos e Capítulos de livros" },
+      { property: "og:description", content: "Produção científica em pneumologia e tuberculose." },
       { property: "og:url", content: "https://fernando-fiuza.lovable.app/artigos" },
       { property: "og:type", content: "website" },
     ],
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/artigos")({
 
 
 const PER_PAGE = 9;
-const ALL: Doc[] = [...articles, ...cronicas, ...lectures];
+const ALL: Doc[] = [...articles];
 
 function Artigos() {
   const [q, setQ] = useState("");
@@ -45,9 +45,9 @@ function Artigos() {
 
   return (
     <PageShell
-      eyebrow="Artigos & Publicações"
-      title="Acervo completo de publicações."
-      intro="Pesquise, filtre e acesse a obra escrita do Dr. Fiuza — artigos científicos, capítulos de livros, crônicas e cartas."
+      eyebrow="Artigos & Capítulos de livros"
+      title="Produção científica publicada."
+      intro="Artigos científicos e capítulos de livros do Dr. Fiuza em pneumologia, tuberculose e saúde pública."
     >
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="flex-1 flex items-center gap-3 border border-border bg-card px-5 py-3.5 focus-within:border-gold transition-colors">

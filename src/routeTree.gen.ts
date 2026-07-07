@@ -15,8 +15,10 @@ import { Route as ProducaoCientificaRouteImport } from './routes/producao-cienti
 import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as HomenagensRouteImport } from './routes/homenagens'
 import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as CronicasECartasRouteImport } from './routes/cronicas-e-cartas'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as BiografiaRouteImport } from './routes/biografia'
+import { Route as AulasEPalestrasRouteImport } from './routes/aulas-e-palestras'
 import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as AcervoRouteImport } from './routes/acervo'
 import { Route as IndexRouteImport } from './routes/index'
@@ -51,6 +53,11 @@ const GaleriaRoute = GaleriaRouteImport.update({
   path: '/galeria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CronicasECartasRoute = CronicasECartasRouteImport.update({
+  id: '/cronicas-e-cartas',
+  path: '/cronicas-e-cartas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
@@ -59,6 +66,11 @@ const ContatoRoute = ContatoRouteImport.update({
 const BiografiaRoute = BiografiaRouteImport.update({
   id: '/biografia',
   path: '/biografia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AulasEPalestrasRoute = AulasEPalestrasRouteImport.update({
+  id: '/aulas-e-palestras',
+  path: '/aulas-e-palestras',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArtigosRoute = ArtigosRouteImport.update({
@@ -81,8 +93,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acervo': typeof AcervoRoute
   '/artigos': typeof ArtigosRoute
+  '/aulas-e-palestras': typeof AulasEPalestrasRoute
   '/biografia': typeof BiografiaRoute
   '/contato': typeof ContatoRoute
+  '/cronicas-e-cartas': typeof CronicasECartasRoute
   '/galeria': typeof GaleriaRoute
   '/homenagens': typeof HomenagensRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
@@ -94,8 +108,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acervo': typeof AcervoRoute
   '/artigos': typeof ArtigosRoute
+  '/aulas-e-palestras': typeof AulasEPalestrasRoute
   '/biografia': typeof BiografiaRoute
   '/contato': typeof ContatoRoute
+  '/cronicas-e-cartas': typeof CronicasECartasRoute
   '/galeria': typeof GaleriaRoute
   '/homenagens': typeof HomenagensRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
@@ -108,8 +124,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/acervo': typeof AcervoRoute
   '/artigos': typeof ArtigosRoute
+  '/aulas-e-palestras': typeof AulasEPalestrasRoute
   '/biografia': typeof BiografiaRoute
   '/contato': typeof ContatoRoute
+  '/cronicas-e-cartas': typeof CronicasECartasRoute
   '/galeria': typeof GaleriaRoute
   '/homenagens': typeof HomenagensRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
@@ -123,8 +141,10 @@ export interface FileRouteTypes {
     | '/'
     | '/acervo'
     | '/artigos'
+    | '/aulas-e-palestras'
     | '/biografia'
     | '/contato'
+    | '/cronicas-e-cartas'
     | '/galeria'
     | '/homenagens'
     | '/linha-do-tempo'
@@ -136,8 +156,10 @@ export interface FileRouteTypes {
     | '/'
     | '/acervo'
     | '/artigos'
+    | '/aulas-e-palestras'
     | '/biografia'
     | '/contato'
+    | '/cronicas-e-cartas'
     | '/galeria'
     | '/homenagens'
     | '/linha-do-tempo'
@@ -149,8 +171,10 @@ export interface FileRouteTypes {
     | '/'
     | '/acervo'
     | '/artigos'
+    | '/aulas-e-palestras'
     | '/biografia'
     | '/contato'
+    | '/cronicas-e-cartas'
     | '/galeria'
     | '/homenagens'
     | '/linha-do-tempo'
@@ -163,8 +187,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcervoRoute: typeof AcervoRoute
   ArtigosRoute: typeof ArtigosRoute
+  AulasEPalestrasRoute: typeof AulasEPalestrasRoute
   BiografiaRoute: typeof BiografiaRoute
   ContatoRoute: typeof ContatoRoute
+  CronicasECartasRoute: typeof CronicasECartasRoute
   GaleriaRoute: typeof GaleriaRoute
   HomenagensRoute: typeof HomenagensRoute
   LinhaDoTempoRoute: typeof LinhaDoTempoRoute
@@ -217,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GaleriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cronicas-e-cartas': {
+      id: '/cronicas-e-cartas'
+      path: '/cronicas-e-cartas'
+      fullPath: '/cronicas-e-cartas'
+      preLoaderRoute: typeof CronicasECartasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contato': {
       id: '/contato'
       path: '/contato'
@@ -229,6 +262,13 @@ declare module '@tanstack/react-router' {
       path: '/biografia'
       fullPath: '/biografia'
       preLoaderRoute: typeof BiografiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aulas-e-palestras': {
+      id: '/aulas-e-palestras'
+      path: '/aulas-e-palestras'
+      fullPath: '/aulas-e-palestras'
+      preLoaderRoute: typeof AulasEPalestrasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/artigos': {
@@ -259,8 +299,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcervoRoute: AcervoRoute,
   ArtigosRoute: ArtigosRoute,
+  AulasEPalestrasRoute: AulasEPalestrasRoute,
   BiografiaRoute: BiografiaRoute,
   ContatoRoute: ContatoRoute,
+  CronicasECartasRoute: CronicasECartasRoute,
   GaleriaRoute: GaleriaRoute,
   HomenagensRoute: HomenagensRoute,
   LinhaDoTempoRoute: LinhaDoTempoRoute,
