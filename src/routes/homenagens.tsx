@@ -5,6 +5,8 @@ import { Quote, FileText, X } from "lucide-react";
 import { useState } from "react";
 import { DocModal } from "@/components/DocModal";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { MuralHomenagens } from "@/components/MuralHomenagens";
+
 
 export const Route = createFileRoute("/homenagens")({
   head: () => ({
