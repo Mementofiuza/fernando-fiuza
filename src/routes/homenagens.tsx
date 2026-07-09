@@ -91,6 +91,10 @@ function Homenagens() {
         </div>
       </div>
 
+      <MuralHomenagens />
+
+
+
       {active && <DocModal open={!!active} onOpenChange={(v) => !v && setActive(null)} title={active.title} url={active.url} />}
 
       <Dialog open={activeImg !== null} onOpenChange={(v) => !v && setActiveImg(null)}>
