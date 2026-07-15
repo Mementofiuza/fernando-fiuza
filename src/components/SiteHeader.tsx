@@ -4,8 +4,7 @@ import { Menu, Search, X } from "lucide-react";
 
 const NAV = [
   { to: "/", label: "Início" },
-  { to: "/biografia", label: "Biografia" },
-  { to: "/linha-do-tempo", label: "Linha do Tempo" },
+  { to: "/biografia", label: "Biografia & Linha do Tempo" },
   { to: "/artigos", label: "Artigos e Capítulos de livros" },
   { to: "/aulas-e-palestras", label: "Aulas e Palestras" },
   { to: "/cronicas-e-cartas", label: "Crônicas e Cartas" },

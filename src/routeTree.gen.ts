@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VideosRouteImport } from './routes/videos'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProducaoCientificaRouteImport } from './routes/producao-cientifica'
-import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as HomenagensRouteImport } from './routes/homenagens'
 import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as CronicasECartasRouteImport } from './routes/cronicas-e-cartas'
@@ -36,11 +35,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ProducaoCientificaRoute = ProducaoCientificaRouteImport.update({
   id: '/producao-cientifica',
   path: '/producao-cientifica',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LinhaDoTempoRoute = LinhaDoTempoRouteImport.update({
-  id: '/linha-do-tempo',
-  path: '/linha-do-tempo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomenagensRoute = HomenagensRouteImport.update({
@@ -99,7 +93,6 @@ export interface FileRoutesByFullPath {
   '/cronicas-e-cartas': typeof CronicasECartasRoute
   '/galeria': typeof GaleriaRoute
   '/homenagens': typeof HomenagensRoute
-  '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/producao-cientifica': typeof ProducaoCientificaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
@@ -114,7 +107,6 @@ export interface FileRoutesByTo {
   '/cronicas-e-cartas': typeof CronicasECartasRoute
   '/galeria': typeof GaleriaRoute
   '/homenagens': typeof HomenagensRoute
-  '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/producao-cientifica': typeof ProducaoCientificaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
@@ -130,7 +122,6 @@ export interface FileRoutesById {
   '/cronicas-e-cartas': typeof CronicasECartasRoute
   '/galeria': typeof GaleriaRoute
   '/homenagens': typeof HomenagensRoute
-  '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/producao-cientifica': typeof ProducaoCientificaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
@@ -147,7 +138,6 @@ export interface FileRouteTypes {
     | '/cronicas-e-cartas'
     | '/galeria'
     | '/homenagens'
-    | '/linha-do-tempo'
     | '/producao-cientifica'
     | '/sitemap.xml'
     | '/videos'
@@ -162,7 +152,6 @@ export interface FileRouteTypes {
     | '/cronicas-e-cartas'
     | '/galeria'
     | '/homenagens'
-    | '/linha-do-tempo'
     | '/producao-cientifica'
     | '/sitemap.xml'
     | '/videos'
@@ -177,7 +166,6 @@ export interface FileRouteTypes {
     | '/cronicas-e-cartas'
     | '/galeria'
     | '/homenagens'
-    | '/linha-do-tempo'
     | '/producao-cientifica'
     | '/sitemap.xml'
     | '/videos'
@@ -193,7 +181,6 @@ export interface RootRouteChildren {
   CronicasECartasRoute: typeof CronicasECartasRoute
   GaleriaRoute: typeof GaleriaRoute
   HomenagensRoute: typeof HomenagensRoute
-  LinhaDoTempoRoute: typeof LinhaDoTempoRoute
   ProducaoCientificaRoute: typeof ProducaoCientificaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VideosRoute: typeof VideosRoute
@@ -220,13 +207,6 @@ declare module '@tanstack/react-router' {
       path: '/producao-cientifica'
       fullPath: '/producao-cientifica'
       preLoaderRoute: typeof ProducaoCientificaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/linha-do-tempo': {
-      id: '/linha-do-tempo'
-      path: '/linha-do-tempo'
-      fullPath: '/linha-do-tempo'
-      preLoaderRoute: typeof LinhaDoTempoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/homenagens': {
@@ -305,7 +285,6 @@ const rootRouteChildren: RootRouteChildren = {
   CronicasECartasRoute: CronicasECartasRoute,
   GaleriaRoute: GaleriaRoute,
   HomenagensRoute: HomenagensRoute,
-  LinhaDoTempoRoute: LinhaDoTempoRoute,
   ProducaoCientificaRoute: ProducaoCientificaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VideosRoute: VideosRoute,
