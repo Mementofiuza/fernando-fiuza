@@ -5,8 +5,7 @@
 ## Pages
 
 - [Home](/): Apresentação do memorial e trajetória do Dr. Fiuza.
-- [Biografia](/biografia): Da infância em Belém ao reconhecimento nacional na medicina.
-- [Linha do Tempo](/linha-do-tempo): Marcos cronológicos da vida e carreira.
+- [Biografia & Linha do Tempo](/biografia): Da infância em Belém ao reconhecimento nacional na medicina, com marcos cronológicos.
 - [Produção Científica](/producao-cientifica): Artigos, aulas e publicações científicas.
 - [Artigos](/artigos): Acervo completo de publicações, crônicas e cartas.
 - [Homenagens](/homenagens): Depoimentos e homenagens de colegas e familiares.

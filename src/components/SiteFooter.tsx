@@ -19,11 +19,11 @@ export function SiteFooter() {
           <div>
             <h4 className="font-serif text-lg mb-4 text-gold">Navegação</h4>
             <ul className="space-y-2 text-sm opacity-85">
-              <li><Link to="/biografia" className="hover:text-gold transition-colors">Biografia</Link></li>
-              <li><Link to="/producao-cientifica" className="hover:text-gold transition-colors">Produção Científica</Link></li>
-              <li><Link to="/artigos" className="hover:text-gold transition-colors">Artigos e Publicações</Link></li>
-              <li><Link to="/linha-do-tempo" className="hover:text-gold transition-colors">Linha do Tempo</Link></li>
-              <li><Link to="/acervo" className="hover:text-gold transition-colors">Acervo</Link></li>
+              <li><Link to="/biografia" className="hover:text-gold transition-colors">Biografia & Linha do Tempo</Link></li>
+              <li><Link to="/artigos" className="hover:text-gold transition-colors">Artigos e Capítulos</Link></li>
+              <li><Link to="/aulas-e-palestras" className="hover:text-gold transition-colors">Aulas e Palestras</Link></li>
+              <li><Link to="/cronicas-e-cartas" className="hover:text-gold transition-colors">Crônicas e Cartas</Link></li>
+              <li><Link to="/homenagens" className="hover:text-gold transition-colors">Mensagens & Homenagens</Link></li>
             </ul>
           </div>
 
