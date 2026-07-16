@@ -17,8 +17,10 @@ import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as CronicasECartasRouteImport } from './routes/cronicas-e-cartas'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as BiografiaRouteImport } from './routes/biografia'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AulasEPalestrasRouteImport } from './routes/aulas-e-palestras'
 import { Route as ArtigosRouteImport } from './routes/artigos'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AcervoRouteImport } from './routes/acervo'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -62,6 +64,11 @@ const BiografiaRoute = BiografiaRouteImport.update({
   path: '/biografia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AulasEPalestrasRoute = AulasEPalestrasRouteImport.update({
   id: '/aulas-e-palestras',
   path: '/aulas-e-palestras',
@@ -70,6 +77,11 @@ const AulasEPalestrasRoute = AulasEPalestrasRouteImport.update({
 const ArtigosRoute = ArtigosRouteImport.update({
   id: '/artigos',
   path: '/artigos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcervoRoute = AcervoRouteImport.update({
@@ -86,8 +98,10 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acervo': typeof AcervoRoute
+  '/admin': typeof AdminRoute
   '/artigos': typeof ArtigosRoute
   '/aulas-e-palestras': typeof AulasEPalestrasRoute
+  '/auth': typeof AuthRoute
   '/biografia': typeof BiografiaRoute
   '/contato': typeof ContatoRoute
   '/cronicas-e-cartas': typeof CronicasECartasRoute
@@ -100,8 +114,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acervo': typeof AcervoRoute
+  '/admin': typeof AdminRoute
   '/artigos': typeof ArtigosRoute
   '/aulas-e-palestras': typeof AulasEPalestrasRoute
+  '/auth': typeof AuthRoute
   '/biografia': typeof BiografiaRoute
   '/contato': typeof ContatoRoute
   '/cronicas-e-cartas': typeof CronicasECartasRoute
@@ -115,8 +131,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/acervo': typeof AcervoRoute
+  '/admin': typeof AdminRoute
   '/artigos': typeof ArtigosRoute
   '/aulas-e-palestras': typeof AulasEPalestrasRoute
+  '/auth': typeof AuthRoute
   '/biografia': typeof BiografiaRoute
   '/contato': typeof ContatoRoute
   '/cronicas-e-cartas': typeof CronicasECartasRoute
@@ -131,8 +149,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/acervo'
+    | '/admin'
     | '/artigos'
     | '/aulas-e-palestras'
+    | '/auth'
     | '/biografia'
     | '/contato'
     | '/cronicas-e-cartas'
@@ -145,8 +165,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/acervo'
+    | '/admin'
     | '/artigos'
     | '/aulas-e-palestras'
+    | '/auth'
     | '/biografia'
     | '/contato'
     | '/cronicas-e-cartas'
@@ -159,8 +181,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/acervo'
+    | '/admin'
     | '/artigos'
     | '/aulas-e-palestras'
+    | '/auth'
     | '/biografia'
     | '/contato'
     | '/cronicas-e-cartas'
@@ -174,8 +198,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcervoRoute: typeof AcervoRoute
+  AdminRoute: typeof AdminRoute
   ArtigosRoute: typeof ArtigosRoute
   AulasEPalestrasRoute: typeof AulasEPalestrasRoute
+  AuthRoute: typeof AuthRoute
   BiografiaRoute: typeof BiografiaRoute
   ContatoRoute: typeof ContatoRoute
   CronicasECartasRoute: typeof CronicasECartasRoute
@@ -244,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BiografiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aulas-e-palestras': {
       id: '/aulas-e-palestras'
       path: '/aulas-e-palestras'
@@ -256,6 +289,13 @@ declare module '@tanstack/react-router' {
       path: '/artigos'
       fullPath: '/artigos'
       preLoaderRoute: typeof ArtigosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/acervo': {
@@ -278,8 +318,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcervoRoute: AcervoRoute,
+  AdminRoute: AdminRoute,
   ArtigosRoute: ArtigosRoute,
   AulasEPalestrasRoute: AulasEPalestrasRoute,
+  AuthRoute: AuthRoute,
   BiografiaRoute: BiografiaRoute,
   ContatoRoute: ContatoRoute,
   CronicasECartasRoute: CronicasECartasRoute,
