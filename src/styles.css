@@ -89,7 +89,29 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    position: relative;
   }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/__l5e/assets-v1/771cd9a0-a202-401e-b9ba-85e0c4a2511a/bg-texture.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.07;
+    filter: blur(2px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @media (max-width: 768px) {
+    body::before {
+      background-attachment: scroll;
+    }
+  }
+
 
   h1, h2, h3, h4, .font-serif { font-family: var(--font-serif); letter-spacing: -0.01em; }
 }
