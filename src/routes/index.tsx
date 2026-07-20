@@ -259,6 +259,8 @@ function Home() {
         </div>
       </section>
 
+      <HomeHomenagensSlider />
+
       {/* QUOTE */}
       <section className="py-28">
         <div className="max-w-4xl mx-auto px-6 text-center reveal">
