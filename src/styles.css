@@ -174,3 +174,10 @@
   }
   .story-link:hover::after { transform: scaleX(1); transform-origin: left; }
 }
+
+#lovable-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
