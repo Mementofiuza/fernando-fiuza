@@ -7,6 +7,7 @@ import saoPauloAsset from "@/assets/sao-paulo.jpg.asset.json";
 import alterDoChaoAsset from "@/assets/alter-do-chao.jpg.asset.json";
 import luandaAsset from "@/assets/luanda.jpg.asset.json";
 import portraitSide from "@/assets/fernando-portrait.jpg.asset.json";
+import { HomeHomenagensSlider } from "@/components/HomeHomenagensSlider";
 
 export const Route = createFileRoute("/")({
   head: () => ({
