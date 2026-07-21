@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       { title: "Memorial Dr. Fernando Augusto Fiuza de Melo" },
       { name: "description", content: "Memorial em homenagem ao legado científico, acadêmico e humano do Dr. Fernando Augusto Fiuza de Melo, médico pneumologista e referência no controle da tuberculose." },
       { property: "og:title", content: "Memorial Dr. Fernando Augusto Fiuza de Melo" },
-      { property: "og:description", content: "Vida, obra e legado de uma referência da medicina brasileira." },
+      { property: "og:description", content: "Memorial em homenagem ao legado científico, acadêmico e humano do Dr. Fernando Augusto Fiuza de Melo, médico pneumologista e referência no controle da tuberculose." },
       { property: "og:url", content: "https://fernando-fiuza.lovable.app/" },
       { property: "og:type", content: "website" },
     ],
