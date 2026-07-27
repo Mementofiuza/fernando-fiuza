@@ -31,13 +31,16 @@ export function DocModal({
             </a>
           </div>
         </DialogHeader>
-        <iframe
-          src={url}
-          title={title}
-          className="w-full flex-1 bg-muted min-h-0"
-        />
+      <div className="w-full flex-1 flex flex-col items-center justify-center gap-3 bg-muted min-h-0 p-8 text-center">
+        <p className="text-sm text-muted-foreground">
+          A pré-visualização não está disponível para este documento.
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Use os botões "Abrir" ou "Baixar" acima para acessar o arquivo.
+        </p>
+      </div>
 
-      </DialogContent>
+    </DialogContent>
     </Dialog>
   );
 }
