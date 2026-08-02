@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ExternalLink, Download } from "lucide-react";
+import { baixarArquivo } from "@/lib/conteudo";
 
 export function DocModal({
   open, onOpenChange, title, url,
@@ -9,6 +10,8 @@ export function DocModal({
   title: string;
   url: string;
 }) {
+  const viewUrl = url;
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[95vw] w-[95vw] h-[96vh] p-0 overflow-hidden bg-background gap-0 flex flex-col rounded-sm">
@@ -18,29 +21,34 @@ export function DocModal({
           </DialogTitle>
           <div className="flex items-center gap-2 shrink-0 mr-6">
             <a
-              href={url} target="_blank" rel="noreferrer"
+              href={viewUrl} target="_blank" rel="noreferrer"
               className="inline-flex items-center gap-1 text-[10px] text-primary hover:text-gold transition-colors"
             >
               <ExternalLink className="w-3 h-3" /> Abrir
             </a>
-            <a
-              href={url} download
+            <button
+              type="button"
+              onClick={() => baixarArquivo(url, title)}
               className="inline-flex items-center gap-1 text-[10px] text-primary hover:text-gold transition-colors"
             >
               <Download className="w-3 h-3" /> Baixar
-            </a>
+            </button>
           </div>
         </DialogHeader>
-      <div className="w-full flex-1 flex flex-col items-center justify-center gap-3 bg-muted min-h-0 p-8 text-center">
-        <p className="text-sm text-muted-foreground">
-          A pré-visualização não está disponível para este documento.
-        </p>
-        <p className="text-sm text-muted-foreground">
-          Use os botões "Abrir" ou "Baixar" acima para acessar o arquivo.
-        </p>
-      </div>
 
-    </DialogContent>
+        <div className="relative w-full flex-1 min-h-0 bg-muted">
+          <div className="absolute inset-0 grid place-items-center px-8 text-center pointer-events-none">
+            <p className="text-sm text-muted-foreground">
+              Carregando o documento… Se não aparecer, use "Abrir" ou "Baixar" acima.
+            </p>
+          </div>
+          <iframe
+            src={viewUrl}
+            title={title}
+            className="relative w-full h-full border-0 bg-background"
+          />
+        </div>
+      </DialogContent>
     </Dialog>
   );
 }
