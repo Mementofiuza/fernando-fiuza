@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      documentos: {
+        Row: {
+          ano: string | null
+          categoria: string | null
+          created_at: string
+          id: string
+          ordem: number
+          secao: string
+          titulo: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          ano?: string | null
+          categoria?: string | null
+          created_at?: string
+          id?: string
+          ordem?: number
+          secao: string
+          titulo: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          ano?: string | null
+          categoria?: string | null
+          created_at?: string
+          id?: string
+          ordem?: number
+          secao?: string
+          titulo?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      galeria_imagens: {
+        Row: {
+          created_at: string
+          id: string
+          ordem: number
+          titulo: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ordem?: number
+          titulo: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ordem?: number
+          titulo?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       homenagens: {
         Row: {
           aprovado: boolean
