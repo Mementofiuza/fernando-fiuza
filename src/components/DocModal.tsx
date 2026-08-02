@@ -10,8 +10,6 @@ export function DocModal({
   title: string;
   url: string;
 }) {
-  const viewUrl = url;
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[95vw] w-[95vw] h-[96vh] p-0 overflow-hidden bg-background gap-0 flex flex-col rounded-sm">
@@ -21,7 +19,7 @@ export function DocModal({
           </DialogTitle>
           <div className="flex items-center gap-2 shrink-0 mr-6">
             <a
-              href={viewUrl} target="_blank" rel="noreferrer"
+              href={url} target="_blank" rel="noreferrer"
               className="inline-flex items-center gap-1 text-[10px] text-primary hover:text-gold transition-colors"
             >
               <ExternalLink className="w-3 h-3" /> Abrir
@@ -36,16 +34,11 @@ export function DocModal({
           </div>
         </DialogHeader>
 
-        <div className="relative w-full flex-1 min-h-0 bg-muted">
-          <div className="absolute inset-0 grid place-items-center px-8 text-center pointer-events-none">
-            <p className="text-sm text-muted-foreground">
-              Carregando o documento… Se não aparecer, use "Abrir" ou "Baixar" acima.
-            </p>
-          </div>
+        <div className="w-full flex-1 min-h-0 bg-muted">
           <iframe
-            src={viewUrl}
+            src={url}
             title={title}
-            className="relative w-full h-full border-0 bg-background"
+            className="w-full h-full border-0"
           />
         </div>
       </DialogContent>
