@@ -9,79 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AcervoRouteImport } from './routes/acervo'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as ArtigosRouteImport } from './routes/artigos'
-import { Route as AulasEPalestrasRouteImport } from './routes/aulas-e-palestras'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as BiografiaRouteImport } from './routes/biografia'
-import { Route as ContatoRouteImport } from './routes/contato'
-import { Route as CronicasECartasRouteImport } from './routes/cronicas-e-cartas'
-import { Route as GaleriaRouteImport } from './routes/galeria'
-import { Route as HomenagensRouteImport } from './routes/homenagens'
-import { Route as ProducaoCientificaRouteImport } from './routes/producao-cientifica'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VideosRouteImport } from './routes/videos'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProducaoCientificaRouteImport } from './routes/producao-cientifica'
+import { Route as HomenagensRouteImport } from './routes/homenagens'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as CronicasECartasRouteImport } from './routes/cronicas-e-cartas'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as BiografiaRouteImport } from './routes/biografia'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AulasEPalestrasRouteImport } from './routes/aulas-e-palestras'
+import { Route as ArtigosRouteImport } from './routes/artigos'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AcervoRouteImport } from './routes/acervo'
+import { Route as IndexRouteImport } from './routes/index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AcervoRoute = AcervoRouteImport.update({
-  id: '/acervo',
-  path: '/acervo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ArtigosRoute = ArtigosRouteImport.update({
-  id: '/artigos',
-  path: '/artigos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AulasEPalestrasRoute = AulasEPalestrasRouteImport.update({
-  id: '/aulas-e-palestras',
-  path: '/aulas-e-palestras',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BiografiaRoute = BiografiaRouteImport.update({
-  id: '/biografia',
-  path: '/biografia',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContatoRoute = ContatoRouteImport.update({
-  id: '/contato',
-  path: '/contato',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CronicasECartasRoute = CronicasECartasRouteImport.update({
-  id: '/cronicas-e-cartas',
-  path: '/cronicas-e-cartas',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GaleriaRoute = GaleriaRouteImport.update({
-  id: '/galeria',
-  path: '/galeria',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomenagensRoute = HomenagensRouteImport.update({
-  id: '/homenagens',
-  path: '/homenagens',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProducaoCientificaRoute = ProducaoCientificaRouteImport.update({
-  id: '/producao-cientifica',
-  path: '/producao-cientifica',
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -89,9 +34,64 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VideosRoute = VideosRouteImport.update({
-  id: '/videos',
-  path: '/videos',
+const ProducaoCientificaRoute = ProducaoCientificaRouteImport.update({
+  id: '/producao-cientifica',
+  path: '/producao-cientifica',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomenagensRoute = HomenagensRouteImport.update({
+  id: '/homenagens',
+  path: '/homenagens',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CronicasECartasRoute = CronicasECartasRouteImport.update({
+  id: '/cronicas-e-cartas',
+  path: '/cronicas-e-cartas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BiografiaRoute = BiografiaRouteImport.update({
+  id: '/biografia',
+  path: '/biografia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AulasEPalestrasRoute = AulasEPalestrasRouteImport.update({
+  id: '/aulas-e-palestras',
+  path: '/aulas-e-palestras',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtigosRoute = ArtigosRouteImport.update({
+  id: '/artigos',
+  path: '/artigos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcervoRoute = AcervoRouteImport.update({
+  id: '/acervo',
+  path: '/acervo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -214,88 +214,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/acervo': {
-      id: '/acervo'
-      path: '/acervo'
-      fullPath: '/acervo'
-      preLoaderRoute: typeof AcervoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/artigos': {
-      id: '/artigos'
-      path: '/artigos'
-      fullPath: '/artigos'
-      preLoaderRoute: typeof ArtigosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/aulas-e-palestras': {
-      id: '/aulas-e-palestras'
-      path: '/aulas-e-palestras'
-      fullPath: '/aulas-e-palestras'
-      preLoaderRoute: typeof AulasEPalestrasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/biografia': {
-      id: '/biografia'
-      path: '/biografia'
-      fullPath: '/biografia'
-      preLoaderRoute: typeof BiografiaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contato': {
-      id: '/contato'
-      path: '/contato'
-      fullPath: '/contato'
-      preLoaderRoute: typeof ContatoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cronicas-e-cartas': {
-      id: '/cronicas-e-cartas'
-      path: '/cronicas-e-cartas'
-      fullPath: '/cronicas-e-cartas'
-      preLoaderRoute: typeof CronicasECartasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/galeria': {
-      id: '/galeria'
-      path: '/galeria'
-      fullPath: '/galeria'
-      preLoaderRoute: typeof GaleriaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/homenagens': {
-      id: '/homenagens'
-      path: '/homenagens'
-      fullPath: '/homenagens'
-      preLoaderRoute: typeof HomenagensRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/producao-cientifica': {
-      id: '/producao-cientifica'
-      path: '/producao-cientifica'
-      fullPath: '/producao-cientifica'
-      preLoaderRoute: typeof ProducaoCientificaRouteImport
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -305,11 +228,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/videos': {
-      id: '/videos'
-      path: '/videos'
-      fullPath: '/videos'
-      preLoaderRoute: typeof VideosRouteImport
+    '/producao-cientifica': {
+      id: '/producao-cientifica'
+      path: '/producao-cientifica'
+      fullPath: '/producao-cientifica'
+      preLoaderRoute: typeof ProducaoCientificaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homenagens': {
+      id: '/homenagens'
+      path: '/homenagens'
+      fullPath: '/homenagens'
+      preLoaderRoute: typeof HomenagensRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cronicas-e-cartas': {
+      id: '/cronicas-e-cartas'
+      path: '/cronicas-e-cartas'
+      fullPath: '/cronicas-e-cartas'
+      preLoaderRoute: typeof CronicasECartasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/biografia': {
+      id: '/biografia'
+      path: '/biografia'
+      fullPath: '/biografia'
+      preLoaderRoute: typeof BiografiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aulas-e-palestras': {
+      id: '/aulas-e-palestras'
+      path: '/aulas-e-palestras'
+      fullPath: '/aulas-e-palestras'
+      preLoaderRoute: typeof AulasEPalestrasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artigos': {
+      id: '/artigos'
+      path: '/artigos'
+      fullPath: '/artigos'
+      preLoaderRoute: typeof ArtigosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acervo': {
+      id: '/acervo'
+      path: '/acervo'
+      fullPath: '/acervo'
+      preLoaderRoute: typeof AcervoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
