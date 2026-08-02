@@ -49,25 +49,25 @@ const slides = [
     image: belemAsset.url,
     position: "center center",
     title: "Belém do Pará",
-    subtitle: "Cidade natal do Dr. Fiuza, onde nasceu em 1944 e formou-se em Medicina pela UFPA.",
+    subtitle: "Belém, cidade natal onde nasceu em abril de 1945 e formou-se em Medicina pela UFPA em dezembro de 1967.",
   },
   {
     image: saoPauloAsset.url,
     position: "center bottom",
     title: "São Paulo",
-    subtitle: "Palco de mais de quatro décadas à frente do Instituto Clemente Ferreira, referência no combate à tuberculose.",
+    subtitle: "São Paulo, SP, onde viveu desde 1975, e trabalhou no Instituto Clemente Ferreira (1976-2011) e no Instituto de Assistência Médica ao Servidor Público Estadual (1979-2011).",
   },
   {
     image: alterDoChaoAsset.url,
     position: "center center",
     title: "Alter do Chão",
-    subtitle: "Refúgio amazônico que sempre esteve presente em sua memória e em suas crônicas.",
+    subtitle: "Alter do chão, refúgio amazônico de onde partiu para as seis expedições médico-científicas aos afluentes do rio Tapajós.",
   },
   {
     image: luandaAsset.url,
     position: "center center",
     title: "Luanda, Angola",
-    subtitle: "Atuação internacional em cooperação científica e no enfrentamento global da tuberculose.",
+    subtitle: "Angola, onde atuou como Consultor Técnico do Ministério da Saúde da República de Angola (2008-2009), no enfrentamento da Tuberculose.",
   },
 ];
 

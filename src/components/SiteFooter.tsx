@@ -36,8 +36,8 @@ export function SiteFooter() {
             Agradecemos a citação da autoria de Fernando Augusto Fiuza de Melo.
           </p>
           <p className="leading-relaxed max-w-4xl">
-            Criado pelo sobrinho Marcelo Rocha de Sá (Jambu Tecnologia — Belém, PA)
-            e Anisio Fernandes Bezerra da Silva; e por Margarida.
+            Criado pelo sobrinho Marcelo Rocha de Sá (Jambu Tecnologia, Belém, PA)
+            e pelo amigo Anisio Fernandes Bezerra da Silva, São Paulo, SP; e por Maria Margarida.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 opacity-90">
             <span className="inline-flex items-center gap-1.5">

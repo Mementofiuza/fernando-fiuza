@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ExternalLink, Download } from "lucide-react";
+import { baixarArquivo } from "@/lib/conteudo";
 
 export function DocModal({
   open, onOpenChange, title, url,
@@ -23,24 +24,24 @@ export function DocModal({
             >
               <ExternalLink className="w-3 h-3" /> Abrir
             </a>
-            <a
-              href={url} download
+            <button
+              type="button"
+              onClick={() => baixarArquivo(url, title)}
               className="inline-flex items-center gap-1 text-[10px] text-primary hover:text-gold transition-colors"
             >
               <Download className="w-3 h-3" /> Baixar
-            </a>
+            </button>
           </div>
         </DialogHeader>
-      <div className="w-full flex-1 flex flex-col items-center justify-center gap-3 bg-muted min-h-0 p-8 text-center">
-        <p className="text-sm text-muted-foreground">
-          A pré-visualização não está disponível para este documento.
-        </p>
-        <p className="text-sm text-muted-foreground">
-          Use os botões "Abrir" ou "Baixar" acima para acessar o arquivo.
-        </p>
-      </div>
 
-    </DialogContent>
+        <div className="w-full flex-1 min-h-0 bg-muted">
+          <iframe
+            src={url}
+            title={title}
+            className="w-full h-full border-0"
+          />
+        </div>
+      </DialogContent>
     </Dialog>
   );
 }
