@@ -23,6 +23,7 @@ import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AcervoRouteImport } from './routes/acervo'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicArquivoSplatRouteImport } from './routes/api/public/arquivo/$'
 
 const VideosRoute = VideosRouteImport.update({
   id: '/videos',
@@ -94,6 +95,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicArquivoSplatRoute = ApiPublicArquivoSplatRouteImport.update({
+  id: '/api/public/arquivo/$',
+  path: '/api/public/arquivo/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/producao-cientifica': typeof ProducaoCientificaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
+  '/api/public/arquivo/$': typeof ApiPublicArquivoSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/producao-cientifica': typeof ProducaoCientificaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
+  '/api/public/arquivo/$': typeof ApiPublicArquivoSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/producao-cientifica': typeof ProducaoCientificaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
+  '/api/public/arquivo/$': typeof ApiPublicArquivoSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/producao-cientifica'
     | '/sitemap.xml'
     | '/videos'
+    | '/api/public/arquivo/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/producao-cientifica'
     | '/sitemap.xml'
     | '/videos'
+    | '/api/public/arquivo/$'
   id:
     | '__root__'
     | '/'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/producao-cientifica'
     | '/sitemap.xml'
     | '/videos'
+    | '/api/public/arquivo/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   ProducaoCientificaRoute: typeof ProducaoCientificaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VideosRoute: typeof VideosRoute
+  ApiPublicArquivoSplatRoute: typeof ApiPublicArquivoSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -312,6 +325,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/arquivo/$': {
+      id: '/api/public/arquivo/$'
+      path: '/api/public/arquivo/$'
+      fullPath: '/api/public/arquivo/$'
+      preLoaderRoute: typeof ApiPublicArquivoSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -330,6 +350,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProducaoCientificaRoute: ProducaoCientificaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VideosRoute: VideosRoute,
+  ApiPublicArquivoSplatRoute: ApiPublicArquivoSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
