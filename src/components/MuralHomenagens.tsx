@@ -181,13 +181,22 @@ export function MuralHomenagens() {
                   {mensagem.length}/500
                 </p>
               </div>
-              <div className="mt-4">
+              <div className="mt-6">
                 <label
                   htmlFor="hom-foto"
-                  className="inline-flex items-center gap-2 cursor-pointer text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-gold transition-colors"
+                  className="group flex items-center gap-4 cursor-pointer rounded-lg border-2 border-dashed border-gold/40 bg-gold/5 px-5 py-5 hover:border-gold hover:bg-gold/10 transition-colors"
                 >
-                  <ImagePlus className="w-4 h-4" />
-                  {foto ? "Trocar foto" : "Anexar foto (opcional)"}
+                  <span className="w-11 h-11 rounded-full bg-gold/15 grid place-items-center group-hover:bg-gold/25 transition-colors shrink-0">
+                    <ImagePlus className="w-5 h-5 text-gold" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium text-primary">
+                      {foto ? "Trocar fotografia" : "Anexar uma fotografia"}
+                    </span>
+                    <span className="block mt-0.5 text-[11px] text-muted-foreground truncate">
+                      {foto ? foto.name : "Opcional — .jpg, .jpeg, .png ou .webp, até 5 MB."}
+                    </span>
+                  </span>
                 </label>
                 <input
                   id="hom-foto"
@@ -197,14 +206,16 @@ export function MuralHomenagens() {
                   onChange={(e) => setFoto(e.target.files?.[0] ?? null)}
                 />
                 {foto && (
-                  <p className="mt-2 text-xs text-muted-foreground truncate">
-                    {foto.name}
-                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setFoto(null)}
+                    className="mt-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground hover:text-destructive transition-colors"
+                  >
+                    Remover foto
+                  </button>
                 )}
-                <p className="mt-2 text-[11px] text-muted-foreground">
-                  .jpg, .jpeg, .png ou .webp — até 5 MB.
-                </p>
               </div>
+
 
               {error && (
                 <p className="mt-4 text-sm text-destructive">{error}</p>
