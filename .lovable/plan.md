@@ -1,34 +1,47 @@
-## Objetivo
+# Ajustes na página inicial, mural de mensagens e envio em massa
 
-Adicionar a imagem enviada como marca d'água global no fundo de todas as páginas, mantendo o verde visível (a pedido da cliente), mas de forma extremamente sutil, sem prejudicar leitura nem quebrar o clima memorial.
+## 1. Página inicial
 
-## Como vai ficar
+- Remover os dois botões sobre os slides ("Conheça sua trajetória" e "Artigos e Capítulos").
+- Remover a caixinha "40+ / Anos de medicina" sobreposta à fotografia.
 
-- A imagem aparece fixa na tela (não rola com o scroll) cobrindo todo o fundo do site.
-- Opacidade muito baixa (~6–8%) — presente como textura, não como imagem em destaque.
-- Blur leve adicional (~2px) para suavizar os blocos geométricos e evitar competição visual com o conteúdo.
-- Fica **abaixo** dos gradientes suaves atuais (dourado + azul), que continuam existindo por cima — isso ajuda o verde a se integrar ao restante da paleta em vez de brigar com ela.
-- Fundo continua `fixed`, então não bugará em scroll longo nem em mobile.
+## 2. Página Mensagens & Homenagens
 
-## Passos
+Trocar os textos:
 
-1. Subir a imagem enviada para o CDN via `lovable-assets` e gerar `src/assets/bg-texture.jpg.asset.json`.
-2. Editar `src/styles.css`:
-   - No `body`, adicionar a imagem como camada de fundo mais baixa, com `background-size: cover`, `background-position: center`, `background-attachment: fixed`.
-   - Aplicar a imagem via um pseudo-elemento `body::before` fixo em tela cheia com `opacity: 0.07` e `filter: blur(2px)`, `z-index: -1`, para não afetar contraste do texto nem interferir em cliques.
-   - Manter os dois gradientes radiais atuais (dourado + azul) por cima, para amarrar o verde à paleta memorial.
-3. Verificar que:
-   - Cards com `bg-card` (brancos) continuam legíveis por cima do fundo.
-   - Header e footer não ficam com listras estranhas.
-   - Mobile: `background-attachment: fixed` em iOS pode piscar — usar `scroll` no breakpoint mobile via `@media` como fallback.
+- "Homenagens do público" → "Homenagem dos leitores deste site"
+- "Escreva uma memória, um agradecimento ou uma palavra em honra ao Dr. Fernando. Se desejar, envie também uma fotografia." → "Escreva uma mensagem. Se desejar, envie também uma fotografia"
+- "Compartilhe uma homenagem" → "Compartilhe uma mensagem"
+
+## 3. Mensagem aprovada não aparece no seu navegador
+
+Verificações feitas agora: as permissões da tabela estão corretas para visitantes e para usuários logados, e neste momento a tabela de homenagens está **vazia** (nenhuma mensagem, aprovada ou pendente). Ou seja, não consegui reproduzir o problema com dados reais, e não vou afirmar uma causa sem prova.
+
+Plano em duas partes:
+
+1. **Diagnóstico**: publicar uma mensagem de teste, aprovar pelo painel e conferir a resposta que o seu navegador recebe (logado e deslogado). Isso mostra se é cache do navegador/CDN ou filtro de dados.
+2. **Correção preventiva** (feita de qualquer forma, pois resolve o cenário mais provável):
+   - Buscar as mensagens aprovadas sempre "sem cache", com um parâmetro que muda a cada carregamento, para o navegador nunca reaproveitar uma resposta antiga.
+   - Reconsultar a lista automaticamente quando a aba volta ao foco.
+   - No painel de admin, após aprovar, forçar a atualização das listas públicas.
+
+Se o diagnóstico apontar outra causa, corrijo essa causa antes de encerrar.
+
+## 4. Envio de 30+ fotos e 40+ PDFs
+
+Adicionar **envio em lote** no painel de admin:
+
+- Selecionar vários arquivos de uma vez (ou arrastar e soltar) em Galeria e em cada seção de documentos.
+- Barra de progresso com contagem ("12 de 40 enviados") e lista de erros, se houver.
+- Título preenchido automaticamente a partir do nome do arquivo (ex.: `Tuberculose_2003.pdf` → "Tuberculose 2003"), podendo ser editado depois na lista.
+- Ordem atribuída automaticamente, na sequência dos itens já existentes.
+- Envio em pequenos grupos, para não travar em conexões lentas.
+
+Recomendação: nomeie os arquivos antes de enviar (ex.: `2003 - Título do artigo.pdf`), assim os títulos já saem prontos.
 
 ## Detalhes técnicos
 
-- Arquivo alterado: `src/styles.css` (bloco `body` e novo `body::before`).
-- Arquivo criado: `src/assets/bg-texture.jpg.asset.json` (pointer CDN).
-- Sem mudança em componentes ou rotas — é puramente CSS global.
-- Sem impacto em SEO, acessibilidade (a imagem é decorativa, não é `<img>`).
-
-## Vai ficar bom?
-
-Sinceramente: **com opacidade ~7% + blur + os gradientes atuais por cima, sim** — a imagem some visualmente e vira só uma textura sutil. Se depois da implementação achar que ainda aparece demais (ou de menos), é ajuste de um número só (`opacity`). Posso deixar preparado para você validar e afinar em seguida.
+- `src/routes/index.tsx`: remover bloco de CTAs do hero e o card "40+".
+- `src/components/MuralHomenagens.tsx`: textos + `fetch` com `cache: 'no-store'` no client Supabase e refetch em `visibilitychange`; mesmo tratamento em `src/components/HomeHomenagensSlider.tsx`.
+- `src/components/admin/AdminConteudo.tsx`: input `multiple`, upload sequencial em lotes de ~4 para o bucket `conteudo` / `homenagens-fotos` e inserção nas tabelas `documentos` / `galeria_imagens`.
+- Nenhuma mudança de schema é necessária.
