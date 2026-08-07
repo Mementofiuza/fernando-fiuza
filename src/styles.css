@@ -100,8 +100,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.24;
-    filter: blur(1.5px);
+    opacity: 0.55;
+    filter: blur(1px) saturate(1.05);
+
     pointer-events: none;
     z-index: -1;
   }
