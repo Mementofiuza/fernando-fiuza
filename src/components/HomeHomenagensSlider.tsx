@@ -1,17 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Link } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchHomenagensAprovadas, type HomenagemPublica } from "@/lib/homenagens";
 import { Quote, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
-type Homenagem = {
-  id: string;
-  nome: string | null;
-  mensagem: string;
-  foto_url: string | null;
-  created_at: string;
-  signedPhoto?: string | null;
-};
+type Homenagem = HomenagemPublica;
 
 export function HomeHomenagensSlider() {
   const [items, setItems] = useState<Homenagem[]>([]);
@@ -20,29 +13,21 @@ export function HomeHomenagensSlider() {
 
   useEffect(() => {
     let cancelled = false;
-    (async () => {
-      const { data } = await supabase
-        .from("homenagens")
-        .select("id,nome,mensagem,foto_url,created_at")
-        .eq("aprovado", true)
-        .order("created_at", { ascending: false })
-        .limit(12);
-      if (cancelled || !data) return;
-      const withUrls = await Promise.all(
-        data.map(async (row) => {
-          if (!row.foto_url) return { ...row, signedPhoto: null };
-          const { data: signed } = await supabase.storage
-            .from("homenagens-fotos")
-            .createSignedUrl(row.foto_url, 60 * 60 * 24);
-          return { ...row, signedPhoto: signed?.signedUrl ?? null };
-        }),
-      );
-      if (!cancelled) setItems(withUrls);
-    })();
+    const load = async () => {
+      const rows = await fetchHomenagensAprovadas(12);
+      if (!cancelled) setItems(rows);
+    };
+    load();
+    const onVisible = () => {
+      if (document.visibilityState === "visible") load();
+    };
+    document.addEventListener("visibilitychange", onVisible);
     return () => {
       cancelled = true;
+      document.removeEventListener("visibilitychange", onVisible);
     };
   }, []);
+
 
   const onSelect = useCallback(() => {
     if (!embla) return;

@@ -100,11 +100,23 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.24;
-    filter: blur(1.5px);
+    opacity: 0.55;
+    filter: blur(1px) saturate(1.05);
+
     pointer-events: none;
     z-index: -1;
   }
+
+  /* Véu suave sobre a textura para manter todos os textos legíveis */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: color-mix(in oklab, var(--color-background) 62%, transparent);
+    pointer-events: none;
+    z-index: -1;
+  }
+
 
   @media (max-width: 768px) {
     body::before {
