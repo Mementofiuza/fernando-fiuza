@@ -116,12 +116,11 @@ export function MuralHomenagens() {
           Deixe sua mensagem
         </span>
         <h2 className="mt-3 font-serif text-3xl md:text-4xl text-primary">
-          Compartilhe uma homenagem
+          Compartilhe uma mensagem
         </h2>
         <div className="gold-rule-left mt-4" />
         <p className="mt-5 text-muted-foreground leading-relaxed">
-          Escreva uma memória, um agradecimento ou uma palavra em honra ao Dr.
-          Fernando. Se desejar, envie também uma fotografia.
+          Escreva uma mensagem. Se desejar, envie também uma fotografia
         </p>
       </div>
 
@@ -255,7 +254,7 @@ export function MuralHomenagens() {
 
       <div className="mt-20">
         <h3 className="font-serif text-2xl text-primary">
-          Homenagens do público
+          Homenagem dos leitores deste site
         </h3>
         <div className="gold-rule-left mt-4" />
 
