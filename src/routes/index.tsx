@@ -197,12 +197,6 @@ function Home() {
               className="w-full aspect-[4/5] object-cover shadow-[var(--shadow-elegant)] rounded-sm"
               loading="lazy"
             />
-            <div className="absolute -bottom-6 -left-6 hidden md:block bg-background border border-border px-6 py-4 shadow-[var(--shadow-soft)] max-w-[240px]">
-              <p className="font-serif text-2xl text-primary leading-none">40+</p>
-              <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
-                Anos de medicina
-              </p>
-            </div>
           </div>
         </div>
       </section>
