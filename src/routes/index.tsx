@@ -120,23 +120,8 @@ function Home() {
               <p className="mt-6 text-lg md:text-xl opacity-90 max-w-2xl fade-up" style={{ animationDelay: "0.3s" }}>
                 {slides[idx].subtitle}
               </p>
-              <div className="mt-10 flex flex-wrap gap-4 fade-up" style={{ animationDelay: "0.45s" }}>
-                <Link
-                  to="/biografia"
-                  className="group inline-flex items-center gap-2 bg-gold text-gold-foreground px-7 py-3.5 text-sm uppercase tracking-[0.18em] font-medium hover-lift"
-                >
-                  Conheça sua trajetória
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  to="/artigos"
-                  className="inline-flex items-center gap-2 border border-white/40 backdrop-blur-sm text-white px-7 py-3.5 text-sm uppercase tracking-[0.18em] hover:bg-white/10 transition-colors"
-                >
-                  Artigos e Capítulos
-                </Link>
-
-              </div>
             </div>
+
           </div>
         </div>
 
