@@ -107,6 +107,17 @@
     z-index: -1;
   }
 
+  /* Véu suave sobre a textura para manter todos os textos legíveis */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: color-mix(in oklab, var(--color-background) 62%, transparent);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+
   @media (max-width: 768px) {
     body::before {
       background-attachment: scroll;
