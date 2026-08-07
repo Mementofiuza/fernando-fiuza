@@ -38,9 +38,25 @@ Adicionar **envio em lote** no painel de admin:
 
 Recomendação: nomeie os arquivos antes de enviar (ex.: `2003 - Título do artigo.pdf`), assim os títulos já saem prontos.
 
+## 5. Reordenar arrastando no painel
+
+Em Artigos, Aulas, Crônicas e Galeria: arrastar e soltar cada item para a posição desejada.
+
+- Alça de arraste visível em cada linha/cartão; ao soltar, a nova ordem é gravada automaticamente.
+- Funciona também no celular (toque e arraste).
+- O campo numérico "Ordem" some da tela — a ordem passa a ser definida só pelo arraste.
+
+## 6. Fundo verde mais visível
+
+- Aumentar a presença da marca-d'água verde (opacidade maior, menos desfoque) e dar a ela um leve tom verde nas camadas de fundo.
+- Ajustar os textos e cartões para manter a leitura confortável: cartões com fundo um pouco mais opaco e títulos/textos com contraste reforçado sobre o novo fundo.
+- Conferir em telas claras e no celular para não "sujar" a leitura.
+
 ## Detalhes técnicos
 
 - `src/routes/index.tsx`: remover bloco de CTAs do hero e o card "40+".
-- `src/components/MuralHomenagens.tsx`: textos + `fetch` com `cache: 'no-store'` no client Supabase e refetch em `visibilitychange`; mesmo tratamento em `src/components/HomeHomenagensSlider.tsx`.
-- `src/components/admin/AdminConteudo.tsx`: input `multiple`, upload sequencial em lotes de ~4 para o bucket `conteudo` / `homenagens-fotos` e inserção nas tabelas `documentos` / `galeria_imagens`.
+- `src/components/MuralHomenagens.tsx`: textos + leitura sem cache e refetch em `visibilitychange`; mesmo tratamento em `src/components/HomeHomenagensSlider.tsx`.
+- `src/components/admin/AdminConteudo.tsx`: input `multiple` com upload em lotes de ~4 para o bucket `conteudo`, inserção em `documentos` / `galeria_imagens`, e reordenação com `@dnd-kit/core` + `@dnd-kit/sortable` persistindo o campo `ordem` em lote.
+- `src/styles.css`: ajustar `body::before` (opacidade/blur/tom) e tokens de `--card` / `--muted-foreground` para contraste.
 - Nenhuma mudança de schema é necessária.
+
