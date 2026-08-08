@@ -111,10 +111,10 @@ function AdminPage() {
   const ativa = SECOES.find((s) => s.key === secao)!;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
         {/* Topbar */}
-        <header className="flex items-center justify-between gap-4 flex-wrap bg-card border border-border rounded-xl px-6 py-5 shadow-sm">
+        <header className="flex items-center justify-between gap-4 flex-wrap bg-card/80 backdrop-blur-sm border border-border rounded-xl px-6 py-5 shadow-sm">
           <div className="flex items-center gap-4">
             <div className="w-11 h-11 rounded-lg bg-gold/15 grid place-items-center">
               <ShieldCheck className="w-5 h-5 text-gold" />
@@ -137,7 +137,7 @@ function AdminPage() {
 
         <div className="mt-8 grid lg:grid-cols-[240px_1fr] gap-8 items-start">
           {/* Sidebar */}
-          <nav className="bg-card border border-border rounded-xl p-3 flex lg:flex-col gap-1 overflow-x-auto shadow-sm">
+          <nav className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-3 flex lg:flex-col gap-1 overflow-x-auto shadow-sm">
             {SECOES.map((s) => {
               const Icon = s.icon;
               const active = secao === s.key;
@@ -159,7 +159,7 @@ function AdminPage() {
           </nav>
 
           {/* Content */}
-          <main className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm min-h-[60vh]">
+          <main className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-6 md:p-8 shadow-sm min-h-[60vh]">
             <div className="flex items-center gap-3 pb-5 border-b border-border">
               <ativa.icon className="w-5 h-5 text-gold" />
               <h2 className="font-serif text-xl text-primary">{ativa.label}</h2>
@@ -265,7 +265,7 @@ function Homenagens() {
     <div>
       <div className="grid sm:grid-cols-3 gap-4">
         {stats.map((s) => (
-          <div key={s.label} className="border border-border rounded-lg p-5 bg-background/60">
+          <div key={s.label} className="border border-border rounded-lg p-5 bg-card/70 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{s.label}</span>
               <s.icon className="w-4 h-4 text-gold" />
