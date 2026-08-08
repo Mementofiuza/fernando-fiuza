@@ -17,6 +17,13 @@ export type GaleriaImagem = {
   titulo: string;
   url: string;
   ordem: number;
+  album_id: string | null;
+};
+
+export type GaleriaAlbum = {
+  id: string;
+  titulo: string;
+  ordem: number;
 };
 
 export async function fetchDocumentos(secao: Secao): Promise<Documento[]> {
@@ -33,11 +40,21 @@ export async function fetchDocumentos(secao: Secao): Promise<Documento[]> {
 export async function fetchGaleria(): Promise<GaleriaImagem[]> {
   const { data, error } = await supabase
     .from("galeria_imagens")
-    .select("id,titulo,url,ordem")
+    .select("id,titulo,url,ordem,album_id")
     .order("ordem", { ascending: true })
     .order("created_at", { ascending: true });
   if (error) throw error;
   return (data ?? []) as GaleriaImagem[];
+}
+
+export async function fetchAlbuns(): Promise<GaleriaAlbum[]> {
+  const { data, error } = await supabase
+    .from("galeria_albuns")
+    .select("id,titulo,ordem")
+    .order("ordem", { ascending: true })
+    .order("created_at", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as GaleriaAlbum[];
 }
 
 /** Baixa o arquivo direto no navegador, sem abrir outra aba. */

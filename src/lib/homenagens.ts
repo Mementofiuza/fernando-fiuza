@@ -25,13 +25,15 @@ export async function fetchHomenagensAprovadas(limit?: number): Promise<Homenage
     order: "created_at.desc",
   });
   if (limit) params.set("limit", String(limit));
-  params.set("_", String(Date.now()));
+  // Filtro válido no PostgREST e único a cada chamada: garante que nenhum
+  // cache (navegador/CDN) devolva uma versão antiga da lista.
+  params.set("created_at", `lt.${new Date(Date.now() + 60_000).toISOString()}`);
 
   let rows: HomenagemPublica[] = [];
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/homenagens?${params.toString()}`, {
       cache: "no-store",
-      headers: { apikey: SUPABASE_KEY, Accept: "application/json" },
+      headers: { apikey: SUPABASE_KEY, Accept: "application/json", "Cache-Control": "no-cache" },
     });
     if (!res.ok) throw new Error(String(res.status));
     rows = (await res.json()) as HomenagemPublica[];

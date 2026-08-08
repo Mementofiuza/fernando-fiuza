@@ -50,8 +50,33 @@ export type Database = {
         }
         Relationships: []
       }
+      galeria_albuns: {
+        Row: {
+          created_at: string
+          id: string
+          ordem: number
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ordem?: number
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ordem?: number
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       galeria_imagens: {
         Row: {
+          album_id: string | null
           created_at: string
           id: string
           ordem: number
@@ -60,6 +85,7 @@ export type Database = {
           url: string
         }
         Insert: {
+          album_id?: string | null
           created_at?: string
           id?: string
           ordem?: number
@@ -68,6 +94,7 @@ export type Database = {
           url: string
         }
         Update: {
+          album_id?: string | null
           created_at?: string
           id?: string
           ordem?: number
@@ -75,7 +102,15 @@ export type Database = {
           updated_at?: string
           url?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "galeria_imagens_album_id_fkey"
+            columns: ["album_id"]
+            isOneToOne: false
+            referencedRelation: "galeria_albuns"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       homenagens: {
         Row: {
