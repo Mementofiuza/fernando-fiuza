@@ -33,7 +33,7 @@ export async function fetchHomenagensAprovadas(limit?: number): Promise<Homenage
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/homenagens?${params.toString()}`, {
       cache: "no-store",
-      headers: { apikey: SUPABASE_KEY, Accept: "application/json" },
+      headers: { apikey: SUPABASE_KEY, Accept: "application/json", "Cache-Control": "no-cache" },
     });
     if (!res.ok) throw new Error(String(res.status));
     rows = (await res.json()) as HomenagemPublica[];
