@@ -17,6 +17,13 @@ export type GaleriaImagem = {
   titulo: string;
   url: string;
   ordem: number;
+  album_id: string | null;
+};
+
+export type GaleriaAlbum = {
+  id: string;
+  titulo: string;
+  ordem: number;
 };
 
 export async function fetchDocumentos(secao: Secao): Promise<Documento[]> {
