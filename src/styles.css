@@ -150,7 +150,7 @@
     background: var(--gradient-gold);
   }
   .glass-card {
-    background: oklch(1 0 0 / 0.6);
+    background: oklch(1 0 0 / 0.82);
     backdrop-filter: blur(14px);
     border: 1px solid oklch(1 0 0 / 0.7);
     box-shadow: var(--shadow-soft);
