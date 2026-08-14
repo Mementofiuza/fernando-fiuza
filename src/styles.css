@@ -40,25 +40,25 @@
   --radius: 0.5rem;
   /* Light memorial palette */
   --background: oklch(0.985 0.003 240);            /* ~#f8f9fb */
-  --foreground: oklch(0.22 0.04 255);              /* deep navy text */
+  --foreground: oklch(0.17 0.04 255);              /* deep navy text (mais escuro) */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.22 0.04 255);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.04 255);
 
-  --primary: oklch(0.27 0.07 255);                 /* dark institutional blue */
+  --primary: oklch(0.22 0.07 255);                 /* dark institutional blue */
   --primary-foreground: oklch(0.985 0.003 240);
 
   --secondary: oklch(0.95 0.01 245);
   --secondary-foreground: oklch(0.27 0.07 255);
 
   --muted: oklch(0.94 0.008 245);
-  --muted-foreground: oklch(0.48 0.02 255);
+  --muted-foreground: oklch(0.38 0.03 255);
 
   --accent: oklch(0.93 0.02 250);
   --accent-foreground: oklch(0.27 0.07 255);
 
-  --gold: oklch(0.60 0.13 72);                     /* discreet gold (escurecido p/ contraste) */
+  --gold: oklch(0.52 0.12 68);                     /* dourado escuro p/ máximo contraste */
   --gold-foreground: oklch(0.22 0.04 255);
 
   --destructive: oklch(0.55 0.22 27);
@@ -100,8 +100,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.74;
-    filter: blur(1px) saturate(1.05);
+    opacity: 0.58;
+    filter: blur(1.5px) saturate(0.95);
 
     pointer-events: none;
     z-index: -1;
@@ -112,7 +112,7 @@
     content: "";
     position: fixed;
     inset: 0;
-    background: color-mix(in oklab, var(--color-background) 46%, transparent);
+    background: color-mix(in oklab, var(--color-background) 66%, transparent);
     pointer-events: none;
     z-index: -1;
   }
@@ -150,7 +150,7 @@
     background: var(--gradient-gold);
   }
   .glass-card {
-    background: oklch(1 0 0 / 0.6);
+    background: oklch(1 0 0 / 0.82);
     backdrop-filter: blur(14px);
     border: 1px solid oklch(1 0 0 / 0.7);
     box-shadow: var(--shadow-soft);
