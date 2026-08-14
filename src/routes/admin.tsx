@@ -181,6 +181,7 @@ function AdminPage() {
               {secao === "aulas" && <AdminDocumentos secao="aulas" titulo="Aulas e Palestras" />}
               {secao === "cronicas" && <AdminDocumentos secao="cronicas" titulo="Crônicas e Cartas" />}
               {secao === "galeria" && <AdminGaleria />}
+              {secao === "usuarios" && <Usuarios />}
             </div>
           </main>
         </div>
