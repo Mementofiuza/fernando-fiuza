@@ -52,6 +52,7 @@ const SECOES = [
   { key: "aulas", label: "Aulas e Palestras", icon: GraduationCap },
   { key: "cronicas", label: "Crônicas e Cartas", icon: PenLine },
   { key: "galeria", label: "Galeria e Imagens", icon: Images },
+  { key: "usuarios", label: "Usuários e Permissões", icon: Users },
 ] as const;
 
 type SecaoKey = (typeof SECOES)[number]["key"];
@@ -128,8 +129,14 @@ function AdminPage() {
               <h1 className="font-serif text-2xl text-primary leading-tight">Painel do site</h1>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 flex-wrap">
             {email && <span className="hidden sm:block text-xs text-muted-foreground">{email}</span>}
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-5 py-2 text-xs uppercase tracking-[0.18em] shadow-sm hover:bg-gold hover:text-gold-foreground transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" /> Voltar ao site
+            </Link>
             <button
               onClick={sair}
               className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary hover:border-gold transition-colors"
