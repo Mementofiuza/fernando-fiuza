@@ -189,7 +189,7 @@ function Home() {
             </Link>
 
           </div>
-          <div className="relative reveal" style={{ animationDelay: "0.2s" }}>
+          <div className="relative reveal w-3/4 mx-auto" style={{ animationDelay: "0.2s" }}>
             <div className="absolute -inset-4 bg-gradient-to-br from-gold/30 to-transparent blur-2xl -z-10" />
             <img
               src={portraitSide.url}

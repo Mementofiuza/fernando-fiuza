@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
 import {
   Loader2,
@@ -16,6 +16,9 @@ import {
   Clock,
   ShieldCheck,
   RefreshCw,
+  ArrowLeft,
+  Users,
+  ShieldOff,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { AdminDocumentos, AdminGaleria } from "@/components/admin/AdminConteudo";
@@ -25,6 +28,7 @@ import {
   editarHomenagem,
   excluirHomenagem,
 } from "@/lib/homenagens-admin.functions";
+import { listarUsuarios, definirAdmin } from "@/lib/usuarios-admin.functions";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -48,6 +52,7 @@ const SECOES = [
   { key: "aulas", label: "Aulas e Palestras", icon: GraduationCap },
   { key: "cronicas", label: "Crônicas e Cartas", icon: PenLine },
   { key: "galeria", label: "Galeria e Imagens", icon: Images },
+  { key: "usuarios", label: "Usuários e Permissões", icon: Users },
 ] as const;
 
 type SecaoKey = (typeof SECOES)[number]["key"];
@@ -124,8 +129,14 @@ function AdminPage() {
               <h1 className="font-serif text-2xl text-primary leading-tight">Painel do site</h1>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 flex-wrap">
             {email && <span className="hidden sm:block text-xs text-muted-foreground">{email}</span>}
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-5 py-2 text-xs uppercase tracking-[0.18em] shadow-sm hover:bg-gold hover:text-gold-foreground transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" /> Voltar ao site
+            </Link>
             <button
               onClick={sair}
               className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary hover:border-gold transition-colors"
@@ -170,6 +181,7 @@ function AdminPage() {
               {secao === "aulas" && <AdminDocumentos secao="aulas" titulo="Aulas e Palestras" />}
               {secao === "cronicas" && <AdminDocumentos secao="cronicas" titulo="Crônicas e Cartas" />}
               {secao === "galeria" && <AdminGaleria />}
+              {secao === "usuarios" && <Usuarios />}
             </div>
           </main>
         </div>
@@ -411,6 +423,147 @@ function Homenagens() {
                 )}
               </div>
             </article>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+type UsuarioAdmin = {
+  id: string;
+  email: string | null;
+  created_at: string;
+  last_sign_in_at: string | null;
+  confirmado: boolean;
+  isAdmin: boolean;
+};
+
+function Usuarios() {
+  const [rows, setRows] = useState<UsuarioAdmin[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [acting, setActing] = useState<string | null>(null);
+  const [erro, setErro] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    setErro(null);
+    try {
+      const data = (await listarUsuarios()) as UsuarioAdmin[];
+      setRows(data);
+    } catch (e) {
+      console.error(e);
+      setErro("Não foi possível carregar os usuários.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  async function alterar(userId: string, admin: boolean) {
+    if (!admin && !confirm("Remover a permissão de administrador deste usuário?")) return;
+    setActing(userId);
+    setErro(null);
+    try {
+      await definirAdmin({ data: { userId, admin } });
+      setRows((prev) => prev.map((u) => (u.id === userId ? { ...u, isAdmin: admin } : u)));
+    } catch (e) {
+      console.error(e);
+      setErro("Não foi possível alterar a permissão deste usuário.");
+    } finally {
+      setActing(null);
+    }
+  }
+
+  const admins = rows.filter((u) => u.isAdmin).length;
+
+  return (
+    <div>
+      <div className="grid sm:grid-cols-3 gap-4">
+        {[
+          { label: "Cadastrados", value: rows.length, icon: Users },
+          { label: "Administradores", value: admins, icon: ShieldCheck },
+          { label: "Sem permissão", value: rows.length - admins, icon: ShieldOff },
+        ].map((s) => (
+          <div key={s.label} className="border border-border rounded-lg p-5 bg-card/70 backdrop-blur-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{s.label}</span>
+              <s.icon className="w-4 h-4 text-gold" />
+            </div>
+            <p className="mt-3 font-serif text-3xl text-primary">{s.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 flex items-center justify-between gap-4 flex-wrap">
+        <p className="text-sm text-muted-foreground">
+          Dê permissão máxima (administrador) a quem se cadastrou no site.
+        </p>
+        <button
+          onClick={load}
+          className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary hover:border-gold transition-colors"
+        >
+          <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} /> Atualizar
+        </button>
+      </div>
+
+      {erro && <p className="mt-4 text-sm text-destructive">{erro}</p>}
+
+      {loading ? (
+        <div className="mt-10 flex items-center gap-2 text-muted-foreground">
+          <Loader2 className="w-4 h-4 animate-spin" /> Carregando…
+        </div>
+      ) : rows.length === 0 ? (
+        <p className="mt-10 text-muted-foreground">Nenhum usuário cadastrado ainda.</p>
+      ) : (
+        <div className="mt-6 space-y-3">
+          {rows.map((u) => (
+            <div
+              key={u.id}
+              className="flex items-center justify-between gap-4 flex-wrap bg-background/60 border border-border rounded-lg px-5 py-4"
+            >
+              <div className="min-w-0">
+                <p className="text-sm text-primary font-medium truncate">{u.email ?? "(sem e-mail)"}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">
+                  Cadastro em {new Date(u.created_at).toLocaleDateString("pt-BR")}
+                  {u.last_sign_in_at
+                    ? ` · último acesso ${new Date(u.last_sign_in_at).toLocaleDateString("pt-BR")}`
+                    : " · nunca acessou"}
+                  {u.confirmado ? "" : " · e-mail não confirmado"}
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <span
+                  className={`text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 rounded-full ${
+                    u.isAdmin ? "bg-gold/15 text-gold" : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {u.isAdmin ? "Administrador" : "Visitante"}
+                </span>
+                {u.isAdmin ? (
+                  <button
+                    onClick={() => alterar(u.id, false)}
+                    disabled={acting === u.id}
+                    className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-destructive hover:border-destructive disabled:opacity-60"
+                  >
+                    {acting === u.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldOff className="w-4 h-4" />}
+                    Remover
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => alterar(u.id, true)}
+                    disabled={acting === u.id}
+                    className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-4 py-2 text-xs uppercase tracking-[0.18em] hover:bg-gold hover:text-gold-foreground transition-colors disabled:opacity-60"
+                  >
+                    {acting === u.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldCheck className="w-4 h-4" />}
+                    Tornar admin
+                  </button>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       )}
