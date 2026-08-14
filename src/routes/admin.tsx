@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
 import {
   Loader2,
@@ -16,6 +16,9 @@ import {
   Clock,
   ShieldCheck,
   RefreshCw,
+  ArrowLeft,
+  Users,
+  ShieldOff,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { AdminDocumentos, AdminGaleria } from "@/components/admin/AdminConteudo";
@@ -25,6 +28,7 @@ import {
   editarHomenagem,
   excluirHomenagem,
 } from "@/lib/homenagens-admin.functions";
+import { listarUsuarios, definirAdmin } from "@/lib/usuarios-admin.functions";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
