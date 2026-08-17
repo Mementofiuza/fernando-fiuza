@@ -681,6 +681,27 @@ export function AdminGaleria() {
     qc.invalidateQueries({ queryKey: ["galeria"] });
   }
 
+  async function ordenarImagens(dir: "asc" | "desc") {
+    const nova = ordenarPorTitulo(lista, dir);
+    setTodas((prev) => {
+      const map = new Map(nova.map((item, i) => [item.id, i]));
+      return prev.map((p) => (map.has(p.id) ? { ...p, ordem: map.get(p.id)! } : p));
+    });
+    await Promise.all(
+      nova.map((item, i) => (item.ordem === i ? Promise.resolve() : supabase.from("galeria_imagens").update({ ordem: i }).eq("id", item.id))),
+    );
+    qc.invalidateQueries({ queryKey: ["galeria"] });
+  }
+
+  async function ordenarPastas(dir: "asc" | "desc") {
+    const nova = ordenarPorTitulo(albuns, dir);
+    setAlbuns(nova);
+    await Promise.all(
+      nova.map((a, i) => (a.ordem === i ? Promise.resolve() : supabase.from("galeria_albuns").update({ ordem: i }).eq("id", a.id))),
+    );
+    qc.invalidateQueries({ queryKey: ["galeria-albuns"] });
+  }
+
   /* ----- visão de pastas ----- */
   if (aberto === null) {
     return (
