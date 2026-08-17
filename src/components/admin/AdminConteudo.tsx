@@ -26,6 +26,28 @@ function inputCls() {
   return "w-full border border-border bg-background px-3 py-2 text-sm outline-none focus:border-gold";
 }
 
+/* ordenação alfabética (pt-BR, ignora acentos/maiúsculas) */
+function ordenarPorTitulo<T extends { titulo: string }>(itens: T[], dir: "asc" | "desc") {
+  const col = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
+  const nova = [...itens].sort((a, b) => col.compare(a.titulo, b.titulo));
+  return dir === "asc" ? nova : nova.reverse();
+}
+
+function BotoesOrdenar({ onOrdenar, disabled }: { onOrdenar: (dir: "asc" | "desc") => void; disabled?: boolean }) {
+  const cls =
+    "inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary hover:border-gold transition-colors disabled:opacity-50";
+  return (
+    <div className="flex gap-2">
+      <button type="button" disabled={disabled} onClick={() => onOrdenar("asc")} className={cls} title="Ordenar de A a Z">
+        <ArrowDownAZ className="w-4 h-4" /> A–Z
+      </button>
+      <button type="button" disabled={disabled} onClick={() => onOrdenar("desc")} className={cls} title="Ordenar de Z a A">
+        <ArrowUpAZ className="w-4 h-4" /> Z–A
+      </button>
+    </div>
+  );
+}
+
 async function uploadArquivo(file: File, pasta: string): Promise<string> {
   const clean = file.name.replace(/[^a-zA-Z0-9._-]+/g, "-");
   const path = `${pasta}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}-${clean}`;
