@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2, Plus, Pencil, Trash2, X, Upload, GripVertical, Layers, Folder, FolderOpen, ArrowLeft } from "lucide-react";
+import { Loader2, Plus, Pencil, Trash2, X, Upload, GripVertical, Layers, Folder, FolderOpen, ArrowLeft, ArrowDownAZ, ArrowUpAZ } from "lucide-react";
 import {
   DndContext,
   closestCenter,
@@ -24,6 +24,28 @@ import { fetchDocumentos, fetchGaleria, fetchAlbuns } from "@/lib/conteudo";
 
 function inputCls() {
   return "w-full border border-border bg-background px-3 py-2 text-sm outline-none focus:border-gold";
+}
+
+/* ordenação alfabética (pt-BR, ignora acentos/maiúsculas) */
+function ordenarPorTitulo<T extends { titulo: string }>(itens: T[], dir: "asc" | "desc") {
+  const col = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
+  const nova = [...itens].sort((a, b) => col.compare(a.titulo, b.titulo));
+  return dir === "asc" ? nova : nova.reverse();
+}
+
+function BotoesOrdenar({ onOrdenar, disabled }: { onOrdenar: (dir: "asc" | "desc") => void; disabled?: boolean }) {
+  const cls =
+    "inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary hover:border-gold transition-colors disabled:opacity-50";
+  return (
+    <div className="flex gap-2">
+      <button type="button" disabled={disabled} onClick={() => onOrdenar("asc")} className={cls} title="Ordenar de A a Z">
+        <ArrowDownAZ className="w-4 h-4" /> A–Z
+      </button>
+      <button type="button" disabled={disabled} onClick={() => onOrdenar("desc")} className={cls} title="Ordenar de Z a A">
+        <ArrowUpAZ className="w-4 h-4" /> Z–A
+      </button>
+    </div>
+  );
 }
 
 async function uploadArquivo(file: File, pasta: string): Promise<string> {
@@ -256,11 +278,23 @@ export function AdminDocumentos({ secao, titulo }: { secao: Secao; titulo: strin
     qc.invalidateQueries({ queryKey: ["documentos", secao] });
   }
 
+  async function ordenarAlfabetica(dir: "asc" | "desc") {
+    const nova = ordenarPorTitulo(lista, dir);
+    setLista(nova);
+    await Promise.all(
+      nova.map((item, i) =>
+        item.ordem === i ? Promise.resolve() : supabase.from("documentos").update({ ordem: i }).eq("id", item.id),
+      ),
+    );
+    qc.invalidateQueries({ queryKey: ["documentos", secao] });
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <h2 className="font-serif text-xl text-primary">{titulo}</h2>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap items-center">
+          <BotoesOrdenar onOrdenar={ordenarAlfabetica} disabled={lista.length < 2} />
           <label className="inline-flex items-center gap-2 border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] cursor-pointer hover:border-gold text-primary">
             <Layers className="w-4 h-4" /> Enviar vários PDFs
             <input type="file" accept="application/pdf" multiple className="hidden" onChange={onFilesLote} />
@@ -647,6 +681,27 @@ export function AdminGaleria() {
     qc.invalidateQueries({ queryKey: ["galeria"] });
   }
 
+  async function ordenarImagens(dir: "asc" | "desc") {
+    const nova = ordenarPorTitulo(lista, dir);
+    setTodas((prev) => {
+      const map = new Map(nova.map((item, i) => [item.id, i]));
+      return prev.map((p) => (map.has(p.id) ? { ...p, ordem: map.get(p.id)! } : p));
+    });
+    await Promise.all(
+      nova.map((item, i) => (item.ordem === i ? Promise.resolve() : supabase.from("galeria_imagens").update({ ordem: i }).eq("id", item.id))),
+    );
+    qc.invalidateQueries({ queryKey: ["galeria"] });
+  }
+
+  async function ordenarPastas(dir: "asc" | "desc") {
+    const nova = ordenarPorTitulo(albuns, dir);
+    setAlbuns(nova);
+    await Promise.all(
+      nova.map((a, i) => (a.ordem === i ? Promise.resolve() : supabase.from("galeria_albuns").update({ ordem: i }).eq("id", a.id))),
+    );
+    qc.invalidateQueries({ queryKey: ["galeria-albuns"] });
+  }
+
   /* ----- visão de pastas ----- */
   if (aberto === null) {
     return (
@@ -668,6 +723,7 @@ export function AdminGaleria() {
           >
             <Plus className="w-4 h-4" /> Criar pasta
           </button>
+          <BotoesOrdenar onOrdenar={ordenarPastas} disabled={albuns.length < 2} />
         </div>
 
         {erro && <p className="mt-4 text-sm text-destructive whitespace-pre-line">{erro}</p>}
@@ -734,7 +790,8 @@ export function AdminGaleria() {
           <FolderOpen className="w-5 h-5 text-gold" />
           {aberto === SEM_TEMA ? "Sem tema" : albumAtual?.titulo}
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 items-center">
+          <BotoesOrdenar onOrdenar={ordenarImagens} disabled={lista.length < 2} />
           <label className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] cursor-pointer hover:border-gold">
             <Upload className="w-4 h-4" /> Enviar várias imagens
             <input type="file" accept="image/*" multiple className="hidden" onChange={onFilesLote} />
