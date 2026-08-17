@@ -293,7 +293,8 @@ export function AdminDocumentos({ secao, titulo }: { secao: Secao; titulo: strin
     <div>
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <h2 className="font-serif text-xl text-primary">{titulo}</h2>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap items-center">
+          <BotoesOrdenar onOrdenar={ordenarAlfabetica} disabled={lista.length < 2} />
           <label className="inline-flex items-center gap-2 border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] cursor-pointer hover:border-gold text-primary">
             <Layers className="w-4 h-4" /> Enviar vários PDFs
             <input type="file" accept="application/pdf" multiple className="hidden" onChange={onFilesLote} />
