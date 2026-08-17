@@ -790,7 +790,8 @@ export function AdminGaleria() {
           <FolderOpen className="w-5 h-5 text-gold" />
           {aberto === SEM_TEMA ? "Sem tema" : albumAtual?.titulo}
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 items-center">
+          <BotoesOrdenar onOrdenar={ordenarImagens} disabled={lista.length < 2} />
           <label className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] cursor-pointer hover:border-gold">
             <Upload className="w-4 h-4" /> Enviar várias imagens
             <input type="file" accept="image/*" multiple className="hidden" onChange={onFilesLote} />
