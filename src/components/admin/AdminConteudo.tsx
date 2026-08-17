@@ -278,6 +278,17 @@ export function AdminDocumentos({ secao, titulo }: { secao: Secao; titulo: strin
     qc.invalidateQueries({ queryKey: ["documentos", secao] });
   }
 
+  async function ordenarAlfabetica(dir: "asc" | "desc") {
+    const nova = ordenarPorTitulo(lista, dir);
+    setLista(nova);
+    await Promise.all(
+      nova.map((item, i) =>
+        item.ordem === i ? Promise.resolve() : supabase.from("documentos").update({ ordem: i }).eq("id", item.id),
+      ),
+    );
+    qc.invalidateQueries({ queryKey: ["documentos", secao] });
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between gap-4 flex-wrap">
