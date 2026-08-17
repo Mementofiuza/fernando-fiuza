@@ -723,6 +723,7 @@ export function AdminGaleria() {
           >
             <Plus className="w-4 h-4" /> Criar pasta
           </button>
+          <BotoesOrdenar onOrdenar={ordenarPastas} disabled={albuns.length < 2} />
         </div>
 
         {erro && <p className="mt-4 text-sm text-destructive whitespace-pre-line">{erro}</p>}
