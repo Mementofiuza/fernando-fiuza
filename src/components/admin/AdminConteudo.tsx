@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2, Plus, Pencil, Trash2, X, Upload, GripVertical, Layers, Folder, FolderOpen, ArrowLeft, ArrowDownAZ, ArrowUpAZ } from "lucide-react";
+import { Loader2, Plus, Pencil, Trash2, Upload, GripVertical, Layers, Folder, FolderOpen, ArrowLeft, ArrowDownAZ, ArrowUpAZ } from "lucide-react";
 import {
   DndContext,
   closestCenter,
