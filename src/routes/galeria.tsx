@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X, Loader2 } from "lucide-react";
+import { X, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { fetchGaleria, fetchAlbuns, type GaleriaImagem } from "@/lib/conteudo";
 
 export const Route = createFileRoute("/galeria")({
@@ -43,6 +43,32 @@ function Galeria() {
   }, [imagens, albuns]);
 
   const visiveis = tema === "todas" ? grupos : grupos.filter((g) => g.id === tema);
+
+  const todasVisiveis = useMemo(
+    () => visiveis.flatMap((g) => g.itens),
+    [visiveis],
+  );
+
+  const activeIndex = active ? todasVisiveis.findIndex((img) => img.id === active.id) : -1;
+
+  const goTo = (dir: "prev" | "next") => {
+    if (!active || todasVisiveis.length <= 1) return;
+    const next = dir === "next"
+      ? (activeIndex + 1) % todasVisiveis.length
+      : (activeIndex - 1 + todasVisiveis.length) % todasVisiveis.length;
+    setActive(todasVisiveis[next]);
+  };
+
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") goTo("next");
+      if (e.key === "ArrowLeft") goTo("prev");
+      if (e.key === "Escape") setActive(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active, activeIndex, todasVisiveis.length]);
 
   return (
     <PageShell
@@ -115,15 +141,45 @@ function Galeria() {
       )}
 
       <Dialog open={active !== null} onOpenChange={(v) => !v && setActive(null)}>
-        <DialogContent className="max-w-6xl w-[95vw] p-0 bg-black/95 border-0">
+        <DialogContent
+          className="max-w-6xl w-[95vw] p-0 bg-black/95 border-0 overflow-hidden"
+          onPointerDownOutside={() => setActive(null)}
+        >
           {active && (
             <div className="relative">
               <img src={active.url} alt={active.titulo} className="w-full max-h-[85vh] object-contain" />
-              <button onClick={() => setActive(null)} className="absolute top-4 right-4 w-10 h-10 grid place-items-center bg-white/10 hover:bg-white/20 text-white rounded-full">
+
+              <button
+                onClick={() => setActive(null)}
+                className="absolute top-4 right-4 w-10 h-10 grid place-items-center bg-white/10 hover:bg-white/20 text-white rounded-full"
+              >
                 <X className="w-5 h-5" />
               </button>
+
+              {todasVisiveis.length > 1 && (
+                <>
+                  <button
+                    onClick={() => goTo("prev")}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 grid place-items-center bg-white/10 hover:bg-white/20 text-white rounded-full"
+                    aria-label="Foto anterior"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={() => goTo("next")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 grid place-items-center bg-white/10 hover:bg-white/20 text-white rounded-full"
+                    aria-label="Próxima foto"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+
               <p className="absolute bottom-0 left-0 right-0 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent text-white font-serif text-center">
                 {active.titulo}
+                <span className="block mt-1 text-xs opacity-70">
+                  {activeIndex + 1} / {todasVisiveis.length}
+                </span>
               </p>
             </div>
           )}
