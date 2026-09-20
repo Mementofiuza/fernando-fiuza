@@ -809,38 +809,37 @@ export function AdminGaleria() {
       {lote && <BarraProgresso feitos={lote.feitos} total={lote.total} />}
       {erro && <p className="mt-4 text-sm text-destructive whitespace-pre-line">{erro}</p>}
 
-      {form && (
-        <div className="mt-6 border border-border rounded-lg bg-card/80 backdrop-blur-sm p-6">
-          <div className="flex items-center justify-between">
-            <h4 className="font-serif text-lg text-primary">{form.id ? "Editar imagem" : "Nova imagem"}</h4>
-            <button onClick={() => setForm(null)} aria-label="Fechar" className="text-muted-foreground hover:text-primary">
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-          <div className="mt-4 grid gap-4">
-            <div>
-              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Título</label>
-              <input className={inputCls()} value={form.titulo} onChange={(e) => setForm({ ...form, titulo: e.target.value })} />
+      <Dialog open={!!form} onOpenChange={(open) => { if (!open) setForm(null); }}>
+        <DialogContent className="sm:max-w-xl bg-card max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-primary">{form?.id ? "Editar imagem" : "Nova imagem"}</DialogTitle>
+          </DialogHeader>
+          {form && (
+            <div className="grid gap-4">
+              <div>
+                <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Título</label>
+                <input autoFocus className={inputCls()} value={form.titulo} onChange={(e) => setForm({ ...form, titulo: e.target.value })} />
+              </div>
+              <div>
+                <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Imagem ou link</label>
+                <input className={inputCls()} value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} placeholder="https://… ou envie um arquivo abaixo" />
+                <label className="mt-3 inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] cursor-pointer hover:border-gold">
+                  {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                  Enviar imagem
+                  <input type="file" accept="image/*" className="hidden" onChange={onFile} />
+                </label>
+              </div>
+              <button
+                onClick={salvar}
+                disabled={saving || uploading}
+                className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-5 py-2.5 text-xs uppercase tracking-[0.18em] hover:bg-gold hover:text-gold-foreground transition-colors disabled:opacity-60"
+              >
+                {saving && <Loader2 className="w-4 h-4 animate-spin" />} Salvar
+              </button>
             </div>
-            <div>
-              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Imagem ou link</label>
-              <input className={inputCls()} value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} placeholder="https://… ou envie um arquivo abaixo" />
-              <label className="mt-3 inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] cursor-pointer hover:border-gold">
-                {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                Enviar imagem
-                <input type="file" accept="image/*" className="hidden" onChange={onFile} />
-              </label>
-            </div>
-          </div>
-          <button
-            onClick={salvar}
-            disabled={saving || uploading}
-            className="mt-5 inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-5 py-2.5 text-xs uppercase tracking-[0.18em] hover:bg-gold hover:text-gold-foreground transition-colors disabled:opacity-60"
-          >
-            {saving && <Loader2 className="w-4 h-4 animate-spin" />} Salvar
-          </button>
-        </div>
-      )}
+          )}
+        </DialogContent>
+      </Dialog>
 
       {isLoading ? (
         <div className="mt-8 flex items-center gap-2 text-muted-foreground">
